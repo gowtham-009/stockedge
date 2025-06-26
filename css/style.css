@@ -22,7 +22,7 @@ body, html, * {
     .scroller-container {
       overflow: hidden;
       margin: 0 -1rem;
-      padding: 0.5rem 1rem;
+   
       cursor: grab;
       user-select: none;
     }
