@@ -1,0 +1,224 @@
+[
+  {
+    "stock": "Reliance Industries",
+    "logo": "img",
+    "authors": ["Morgan Stanley", "Goldman Sachs", "JP Morgan"],
+    "ltp": "2850.50",
+    "target": "3200.00",
+    "price_at_reco": "2750.00",
+    "upside": "16.36",
+    "status": "Buy",
+    "reports": ["rel_report1.pdf", "rel_report2.pdf", "rel_report3.pdf"]
+  },
+  {
+    "stock": "TCS",
+    "logo": "img",
+    "authors": ["Credit Suisse", "UBS", "CLSA"],
+    "ltp": "3850.75",
+    "target": "3500.00",
+    "price_at_reco": "3900.00",
+    "upside": "-1.26",
+    "status": "Sell",
+    "reports": ["tcs_analysis1.pdf", "tcs_analysis2.pdf", "tcs_analysis3.pdf"]
+  },
+  {
+    "stock": "HDFC Bank",
+    "logo": "img",
+    "authors": ["Nomura", "Bernstein", "HSBC"],
+    "ltp": "1450.20",
+    "target": "1500.00",
+    "price_at_reco": "1425.00",
+    "upside": "5.26",
+    "status": "Hold",
+    "reports": ["hdfc_q1.pdf", "hdfc_q2.pdf", "hdfc_q3.pdf"]
+  },
+  {
+    "stock": "Infosys",
+    "logo": "img",
+    "authors": ["Jefferies", "Citi", "Barclays"],
+    "ltp": "1650.00",
+    "target": "1800.00",
+    "price_at_reco": "1600.00",
+    "upside": "12.50",
+    "status": "Buy",
+    "reports": ["infy_outlook1.pdf", "infy_outlook2.pdf", "infy_outlook3.pdf"]
+  },
+  {
+    "stock": "Bajaj Finance",
+    "logo": "img",
+    "authors": ["Deutsche Bank", "Macquarie", "BNP Paribas"],
+    "ltp": "7250.00",
+    "target": "6800.00",
+    "price_at_reco": "7350.00",
+    "upside": "-1.36",
+    "status": "Sell",
+    "reports": ["bajaj_fin1.pdf", "bajaj_fin2.pdf", "bajaj_fin3.pdf"]
+  },
+  {
+    "stock": "ITC",
+    "logo": "img",
+    "authors": ["Jefferies", "Credit Suisse", "Nomura"],
+    "ltp": "230.45",
+    "target": "250.00",
+    "price_at_reco": "225.00",
+    "upside": "11.11",
+    "status": "Buy",
+    "reports": ["itc_report1.pdf", "itc_report2.pdf", "itc_report3.pdf"]
+  },
+  {
+    "stock": "Bharti Airtel",
+    "logo": "img",
+    "authors": ["Morgan Stanley", "Goldman Sachs", "JP Morgan"],
+    "ltp": "715.60",
+    "target": "750.00",
+    "price_at_reco": "700.00",
+    "upside": "7.14",
+    "status": "Hold",
+    "reports": ["airtel_q1.pdf", "airtel_q2.pdf", "airtel_q3.pdf"]
+  },
+  {
+    "stock": "HUL",
+    "logo": "img",
+    "authors": ["CLSA", "UBS", "Bernstein"],
+    "ltp": "2450.00",
+    "target": "2600.00",
+    "price_at_reco": "2400.00",
+    "upside": "8.33",
+    "status": "Buy",
+    "reports": ["hul_analysis1.pdf", "hul_analysis2.pdf", "hul_analysis3.pdf"]
+  },
+  {
+    "stock": "Wipro",
+    "logo": "img",
+    "authors": ["HSBC", "Citi", "Barclays"],
+    "ltp": "450.30",
+    "target": "400.00",
+    "price_at_reco": "460.00",
+    "upside": "-2.17",
+    "status": "Sell",
+    "reports": ["wipro_strat1.pdf", "wipro_strat2.pdf", "wipro_strat3.pdf"]
+  },
+  {
+    "stock": "Asian Paints",
+    "logo": "img",
+    "authors": ["Deutsche Bank", "Macquarie", "BNP Paribas"],
+    "ltp": "3150.00",
+    "target": "3400.00",
+    "price_at_reco": "3100.00",
+    "upside": "9.68",
+    "status": "Hold",
+    "reports": ["asian_paints1.pdf", "asian_paints2.pdf", "asian_paints3.pdf"]
+  },
+  
+  {
+    "stock": "ICICI Bank",
+    "logo": "img",
+    "authors": ["Kotak Securities", "Edelweiss", "Axis Capital"],
+    "ltp": "920.45",
+    "target": "1000.00",
+    "price_at_reco": "900.00",
+    "upside": "11.11",
+    "status": "Buy",
+    "reports": ["icici_banking.pdf", "icici_financials.pdf", "icici_analysis.pdf"]
+  },
+  {
+    "stock": "SBI",
+    "logo": "img",
+    "authors": ["Motilal Oswal", "Prabhudas Lilladher", "IDBI Capital"],
+    "ltp": "650.30",
+    "target": "600.00",
+    "price_at_reco": "660.00",
+    "upside": "-1.52",
+    "status": "Sell",
+    "reports": ["sbi_research.pdf", "sbi_banking.pdf", "sbi_strategy.pdf"]
+  },
+  {
+    "stock": "Tata Motors",
+    "logo": "img",
+    "authors": ["Emkay Global", "Spark Capital", "IIFL Securities"],
+    "ltp": "850.75",
+    "target": "950.00",
+    "price_at_reco": "820.00",
+    "upside": "15.85",
+    "status": "Buy",
+    "reports": ["tata_motors1.pdf", "tata_motors2.pdf", "tata_motors3.pdf"]
+  },
+  {
+    "stock": "Sun Pharma",
+    "logo": "img",
+    "authors": ["Antique Stock", "PhillipCapital", "Centrum Broking"],
+    "ltp": "1250.00",
+    "target": "1300.00",
+    "price_at_reco": "1230.00",
+    "upside": "5.69",
+    "status": "Hold",
+    "reports": ["sun_pharma1.pdf", "sun_pharma2.pdf", "sun_pharma3.pdf"]
+  },
+  {
+    "stock": "Maruti Suzuki",
+    "logo": "img",
+    "authors": ["Elara Capital", "JM Financial", "ICICI Securities"],
+    "ltp": "9500.00",
+    "target": "10000.00",
+    "price_at_reco": "9400.00",
+    "upside": "6.38",
+    "status": "Buy",
+    "reports": ["maruti_auto.pdf", "maruti_outlook.pdf", "maruti_analysis.pdf"]
+  },
+  {
+    "stock": "Nestle India",
+    "logo": "img",
+    "authors": ["HDFC Securities", "Sharekhan", "YES Securities"],
+    "ltp": "22500.00",
+    "target": "24000.00",
+    "price_at_reco": "22000.00",
+    "upside": "9.09",
+    "status": "Hold",
+    "reports": ["nestle_fmcg.pdf", "nestle_research.pdf", "nestle_strategy.pdf"]
+  },
+  {
+    "stock": "Adani Ports",
+    "logo": "img",
+    "authors": ["Anand Rathi", "Geojit Financial", "LKP Securities"],
+    "ltp": "850.60",
+    "target": "750.00",
+    "price_at_reco": "870.00",
+    "upside": "-2.30",
+    "status": "Sell",
+    "reports": ["adani_ports1.pdf", "adani_ports2.pdf", "adani_ports3.pdf"]
+  },
+  {
+    "stock": "Titan Company",
+    "logo": "img",
+    "authors": ["Dolat Capital", "KRChoksey", "Nirmal Bang"],
+    "ltp": "3250.00",
+    "target": "3500.00",
+    "price_at_reco": "3150.00",
+    "upside": "11.11",
+    "status": "Buy",
+    "reports": ["titan_jewelry.pdf", "titan_watches.pdf", "titan_retail.pdf"]
+  },
+  {
+    "stock": "Coal India",
+    "logo": "img",
+    "authors": ["SMC Global", "Angel Broking", "Reliance Securities"],
+    "ltp": "240.75",
+    "target": "220.00",
+    "price_at_reco": "245.00",
+    "upside": "-1.75",
+    "status": "Sell",
+    "reports": ["coal_india1.pdf", "coal_india2.pdf", "coal_india3.pdf"]
+  },
+  {
+    "stock": "Dr. Reddy's",
+    "logo": "img",
+    "authors": ["DAM Capital", "Incred Capital", "BOB Capital"],
+    "ltp": "5800.00",
+    "target": "6200.00",
+    "price_at_reco": "5700.00",
+    "upside": "8.77",
+    "status": "Hold",
+    "reports": ["drreddy_pharma.pdf", "drreddy_research.pdf", "drreddy_strategy.pdf"]
+  }
+
+]

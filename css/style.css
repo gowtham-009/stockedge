@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    font-family: 'Inter', sans-serif;
+   
+}
+/* Disable user text selection and long-press dictionary popup globally */
+body, html, * {
+    overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+}
+*{
+    box-sizing: border-box;
+    padding: 0%;
+    margin: 0%;
+    list-style-type: none;
+}
+
+    .scroller-container {
+      overflow: hidden;
+      margin: 0 -1rem;
+      padding: 0.5rem 1rem;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .scroller-container:active {
+      cursor: grabbing;
+    }
+
+    .scroller-content {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 16px;
+      will-change: transform;
+      transition: transform 0.3s ease-out;
+      width: max-content;
+    }
+
+    .scroller-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scroller-container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Custom chip style to match PrimeVue */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      background-color: #e2e8f0;
+      color: #334155;
+      font-size: 0.875rem;
+    }
+
+    .chip i {
+      margin-right: 0.25rem;
+    }
