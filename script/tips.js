@@ -210,9 +210,9 @@
             </div>
 
             <div class="w-full p-1 flex gap-1 mt-2">
-              <span class="chip"><i class="fa-solid fa-file-pdf"></i> PDF</span>
-              <span class="chip"><i class="fa-solid fa-signs-post"></i> POST</span>
-              <span class="chip"><i class="fa-solid fa-cloud"></i> CACHE</span>
+              <span class="chip"><i class="pi pi-file-pdf"></i> PDF</span>
+              <span class="chip"><i class="pi pi-telegram"></i> POST</span>
+              <span class="chip"><i class="pi pi-star"></i> CACHE</span>
             </div>
 
             <div class="w-full p-1">
