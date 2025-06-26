@@ -19,12 +19,10 @@
     <main class="flex-1 overflow-y-auto mt-16 mb-16"> <!-- mt-16 and mb-16 account for header/footer height -->
         <div class="container mx-auto p-1">
             <!-- 10 Sections -->
-           <section class="bg-white rounded-xl shadow-sm p-2">
+           <section id="section1" class="bg-white rounded-xl shadow-sm p-2">
     <div class="flex justify-between items-center w-full mb-4">
       <h2 class="text-xl font-semibold text-slate-800">Tips</h2>
-      <p class="text-blue-500 cursor-pointer flex items-center">
-        View All <i class="pi pi-angle-right ml-1"></i>
-      </p>
+      
     </div>
 
     <!-- Tab Buttons -->
@@ -46,6 +44,44 @@
         <!-- Cards will be inserted here by JavaScript -->
       </div>
     </div>
+
+   <div class="w-full flex justify-end">
+     <p class="text-blue-500 cursor-pointer  flex items-center" onclick="viewall()">
+        View All <i class="pi pi-angle-right ml-1"></i>
+      </p>
+   </div>
+  </section>
+
+  <section id="section2" class="bg-white rounded-xl shadow-sm p-2 hidden" >
+      <div class="flex justify-between items-center w-full mb-4">
+      <h2 class="text-xl font-semibold text-slate-800">Tips</h2>
+      
+    </div>
+
+   <div class="flex gap-2 mb-4">
+      <button onclick="filterGrid('All')" class="tab-filter-btn px-4 py-2 rounded-full border border-slate-200 bg-blue-500 text-white text-sm transition active" data-tab="All">
+        All
+      </button>
+      <button onclick="filterGrid('Buy')" class="tab-filter-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-sm transition" data-tab="Buy">
+        Buy
+      </button>
+      <button onclick="filterGrid('Sell')" class="tab-filter-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-sm transition" data-tab="Sell">
+        Sell
+      </button>
+      <button onclick="filterGrid('Hold')" class="tab-filter-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-sm transition" data-tab="Hold">
+        Hold
+      </button>
+    </div>
+
+    <div class="w-full" id="viewall">
+      <!-- Grid content will be inserted here -->
+    </div>
+
+    <div class="w-full flex justify-end mt-1">
+      <p class="text-blue-500 cursor-pointer flex items-center" onclick="viewless()">
+        View Less <i class="pi pi-angle-right ml-1"></i>
+      </p>
+    </div>
   </section>
 
            
@@ -57,6 +93,13 @@
     <footer class="bg-gray-800 text-white p-4 fixed bottom-0 w-full z-10">
         <p>Fixed Footer - © 2023</p>
     </footer>
+
+
+
+
+
+
+   
 
 
    <script src="script/tips.js"></script>
