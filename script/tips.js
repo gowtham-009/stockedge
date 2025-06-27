@@ -342,7 +342,7 @@ function viewless() {
 
       const gridContainer = document.createElement('div');
       gridContainer.innerHTML = `
-        <ul role="list" class="mt-3 grid grid-cols-1  gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 mb-10">
+        <ul role="list" class="mt-3 grid grid-cols-1  gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           ${data.map(item => `
             <li class="col-span-1 px-2 py-2 flex rounded-md shadow-lg" >
              <div class="w-full">
@@ -408,6 +408,12 @@ function viewless() {
             </li>
           `).join('')}
         </ul>
+
+           <div class="w-full flex justify-end  mb-10">
+      <p class="text-blue-500 cursor-pointer flex items-center" onclick="viewless()">
+        View Less <i class="pi pi-angle-right ml-1"></i>
+      </p>
+    </div>
       `;
       
       viewallDiv.innerHTML = '';
