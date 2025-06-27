@@ -24,10 +24,11 @@
     <!-- Scrollable Main Content -->
     <main class="flex-1 overflow-y-auto mt-16 mb-16"> <!-- mt-16 and mb-16 account for header/footer height -->
 
-        <div id="loading" class=" w-full ">
+      <body class="bg-gray-50 p-4">
+  <div id="loading" class="w-full">
     
     <!-- Repeat this 6 times -->
-    <div  class="animate-pulse w-full rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+    <div class="animate-pulse w-full rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
       <div class="flex items-center justify-between mb-4">
         <div class="h-4 w-24 bg-gray-200 rounded"></div>
         <div class="h-6 w-12 bg-red-200 rounded-full"></div>
@@ -59,10 +60,10 @@
     <!-- Copy/paste the block above 5 more times for 6 total -->
 
   </div>
-      
+</body>
 
 
-        <div id="content" class="container mx-auto p-1 hidden">
+        <div id="content" class="container hidden mx-auto p-1">
             <!-- 10 Sections -->
            <section id="section1" class="bg-white rounded-xl shadow-sm p-2">
     <div class="flex justify-between items-center w-full mb-4">
@@ -122,12 +123,11 @@
       <!-- Grid content will be inserted here -->
     </div>
 
-  <div class="w-full flex justify-center py-2 sticky bottom-16 bg-white z-0">
-  <button onclick="viewless()" class="flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-full shadow-md">
-    <i class="pi pi-angle-left mr-2"></i>
-    View Less
-  </button>
-</div>
+    <div class="w-full flex justify-end mt-1">
+      <p class="text-blue-500 cursor-pointer flex items-center" onclick="viewless()">
+        View Less <i class="pi pi-angle-right ml-1"></i>
+      </p>
+    </div>
   </section>
 
            
