@@ -417,5 +417,24 @@ function renderGrid(data) {
   viewallDiv.innerHTML = '';
   viewallDiv.appendChild(gridContainer);
 }
-    // Initialize with first section visible
+  
     document.getElementById('section1').classList.remove('hidden');
+
+
+   const openBtn = document.getElementById('openDrawer');
+  const drawer = document.getElementById('drawer');
+  const drawerPanel = document.getElementById('drawerPanel');
+
+  openBtn.addEventListener('click', () => {
+    drawer.classList.remove('hidden');
+    setTimeout(() => {
+      drawerPanel.classList.remove('-translate-x-full');
+    }, 10); // short delay to trigger transition
+  });
+
+  function closeDrawer() {
+    drawerPanel.classList.add('-translate-x-full');
+    setTimeout(() => {
+      drawer.classList.add('hidden');
+    }, 500); // matches the transition duration
+  }
