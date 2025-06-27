@@ -23,7 +23,46 @@
 
     <!-- Scrollable Main Content -->
     <main class="flex-1 overflow-y-auto mt-16 mb-16"> <!-- mt-16 and mb-16 account for header/footer height -->
-        <div class="container mx-auto p-1">
+
+        <div id="loading" class=" w-full ">
+    
+    <!-- Repeat this 6 times -->
+    <div  class="animate-pulse w-full rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div class="h-4 w-24 bg-gray-200 rounded"></div>
+        <div class="h-6 w-12 bg-red-200 rounded-full"></div>
+      </div>
+      <div class="flex justify-between mb-2">
+        <div>
+          <div class="h-3 w-16 bg-gray-200 rounded mb-1"></div>
+          <div class="h-4 w-24 bg-gray-300 rounded"></div>
+        </div>
+        <div>
+          <div class="h-3 w-16 bg-gray-200 rounded mb-1"></div>
+          <div class="h-4 w-20 bg-gray-300 rounded"></div>
+        </div>
+      </div>
+      <div class="h-4 w-32 bg-gray-200 rounded mb-4"></div>
+      <div class="flex space-x-2 mb-4">
+        <div class="h-8 w-12 bg-gray-300 rounded"></div>
+        <div class="h-8 w-12 bg-gray-300 rounded"></div>
+        <div class="h-8 w-16 bg-gray-300 rounded"></div>
+      </div>
+      <div class="h-4 w-16 bg-gray-200 rounded mb-2"></div>
+      <div class="flex flex-wrap gap-2">
+        <div class="h-6 w-20 bg-gray-300 rounded-full"></div>
+        <div class="h-6 w-16 bg-gray-300 rounded-full"></div>
+        <div class="h-6 w-14 bg-gray-300 rounded-full"></div>
+      </div>
+    </div>
+
+    <!-- Copy/paste the block above 5 more times for 6 total -->
+
+  </div>
+      
+
+
+        <div id="content" class="container mx-auto p-1 hidden">
             <!-- 10 Sections -->
            <section id="section1" class="bg-white rounded-xl shadow-sm p-2">
     <div class="flex justify-between items-center w-full mb-4">

@@ -246,15 +246,21 @@ document.addEventListener('DOMContentLoaded', function () {
   // Fetch and initialize data
   const fetchStockData = async () => {
 
+    
+
     try {
       const response = await fetch('/data/data.json');
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const data = await response.json();
-
-      const order = ['Sell', 'Buy', 'Hold'];
+      if(data){
+          document.getElementById('loading').classList.add('hidden')
+        document.getElementById('content').classList.remove('hidden')
+         const order = ['Sell', 'Buy', 'Hold'];
       products = order.flatMap(status => data.filter(item => item.status === status));
 
       setTab(activeTab);
+      }
+     
     } catch (error) {
       console.error('Error fetching stock data:', error);
     }
