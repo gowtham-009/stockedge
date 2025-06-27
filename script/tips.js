@@ -407,7 +407,7 @@ function renderGrid(data) {
       `).join('')}
     </ul>
 
-    <div class="view-less-container w-full flex justify-end mb-10 p-4 bg-white border-t border-gray-200 sticky bottom-0">
+    <div class="view-less-container w-full flex justify-end mb-12 p-2 bg-white border-t border-gray-200 sticky bottom-0">
       <p class="text-blue-500 cursor-pointer flex items-center" onclick="viewless()">
         View Less <i class="pi pi-angle-right ml-1"></i>
       </p>
