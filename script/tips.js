@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     filteredProducts.forEach(item => {
       const card = document.createElement('div');
-      card.className = 'flex-none w-[360px] bg-gray-50 border border-gray-200 rounded-xl p-5 transition-all hover:-translate-y-0.5 hover:shadow-sm';
+      card.className = 'flex-none w-[360px] bg-gray-50 border border-gray-200 rounded-xl p-2 transition-all hover:-translate-y-0.5 hover:shadow-sm';
 
       card.innerHTML = `
             <div class="w-full flex gap-1 items-center">
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
             </div>
 
-            <div class="w-full flex justify-between mt-1">
+            <div class="w-full flex justify-between ">
               <div class="w-full p-1">
                 <p class="text-sm text-slate-500">LTP</p>
                 <p class="text-slate-800">${item.ltp}</p>
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
             </div>
 
-            <div class="w-full p-1 flex gap-1 mt-2">
+            <div class="w-full p-1 flex gap-1 mt-1">
               <span class="chip"><i class="pi pi-file-pdf"></i> PDF</span>
               <span class="chip"><i class="pi pi-telegram"></i> POST</span>
               <span class="chip"><i class="pi pi-star"></i> CACHE</span>
