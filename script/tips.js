@@ -342,7 +342,7 @@ function viewless() {
 
       const gridContainer = document.createElement('div');
       gridContainer.innerHTML = `
-        <ul role="list" class="mt-3 grid grid-cols-1 mb-3 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+        <ul role="list" class="mt-3 grid grid-cols-1  gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           ${data.map(item => `
             <li class="col-span-1 px-2 py-2 flex rounded-md shadow-lg" >
              <div class="w-full">
