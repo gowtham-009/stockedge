@@ -328,25 +328,27 @@ function viewless() {
       }
     }
 
-    function renderGrid(data) {
-      const viewallDiv = document.getElementById('viewall');
-      
-      if (data.length === 0) {
-        viewallDiv.innerHTML = `
-          <div class="p-8 text-center text-gray-500">
-            No ${currentFilter === 'All' ? '' : currentFilter} stocks found
-          </div>
-        `;
-        return;
-      }
+function renderGrid(data) {
+  const viewallDiv = document.getElementById('viewall');
+  
+  if (data.length === 0) {
+    viewallDiv.innerHTML = `
+      <div class="p-8 text-center text-gray-500">
+        No ${currentFilter === 'All' ? '' : currentFilter} stocks found
+      </div>
+    `;
+    return;
+  }
 
-      const gridContainer = document.createElement('div');
-      gridContainer.innerHTML = `
-        <ul role="list" class="mt-3 grid grid-cols-1  gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-          ${data.map(item => `
-            <li class="col-span-1 px-2 py-2 flex rounded-md shadow-lg" >
-             <div class="w-full">
-              <div class="w-full flex gap-1 items-center">
+  const gridContainer = document.createElement('div');
+  gridContainer.className = 'grid-view-container'; // Added container class
+  
+  gridContainer.innerHTML = `
+    <ul role="list" class="grid-content mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+      ${data.map(item => `
+        <li class="col-span-1 px-2 py-2 flex rounded-md shadow-lg">
+          <div class="w-full">
+            <div class="w-full flex gap-1 items-center">
               <div>
                 <img src="css/images/circle.png" alt="" width="40" height="40" class="rounded-full">
               </div>
@@ -354,10 +356,11 @@ function viewless() {
                 ${item.stock}
               </div>
               <div class="flex justify-end w-32">
-                <span class="px-2 py-2 rounded-xl text-sm font-medium ${item.status === 'Buy' ? 'bg-green-100 text-green-500' :
-          item.status === 'Hold' ? 'bg-yellow-100 text-yellow-500' :
-            'bg-red-100 text-red-500'
-        }">
+                <span class="px-2 py-2 rounded-xl text-sm font-medium ${
+                  item.status === 'Buy' ? 'bg-green-100 text-green-500' :
+                  item.status === 'Hold' ? 'bg-yellow-100 text-yellow-500' :
+                  'bg-red-100 text-red-500'
+                }">
                   ${item.status}
                 </span>
               </div>
@@ -374,7 +377,7 @@ function viewless() {
               </div>
             </div>
 
-             <div class="w-full flex justify-between">
+            <div class="w-full flex justify-between">
               <div class="w-full p-1">
                 <p class="text-sm text-slate-500">Price at Repco</p>
                 <p class="text-slate-800">${item.price_at_reco}</p>
@@ -387,38 +390,32 @@ function viewless() {
               </div>
             </div>
 
-              <div class="w-full p-1 flex gap-1 mt-2">
+            <div class="w-full p-1 flex gap-1 mt-2">
               <span class="chip"><i class="pi pi-file-pdf"></i> PDF</span>
               <span class="chip"><i class="pi pi-telegram"></i> POST</span>
               <span class="chip"><i class="pi pi-star"></i> CACHE</span>
             </div>
 
-                 <div class="w-full p-1">
+            <div class="w-full p-1">
               <p class="text-lg text-slate-800 font-medium">Author</p>
               <div class="w-full flex gap-2 flex-wrap mt-1">
-                ${item.authors.map(author =>
-          `<span class="chip">${author}</span>`
-        ).join('')}
+                ${item.authors.map(author => `<span class="chip">${author}</span>`).join('')}
               </div>
             </div>
+          </div>
+        </li>
+      `).join('')}
+    </ul>
 
-             </div>
-             
-             
-            </li>
-          `).join('')}
-        </ul>
-
-           <div class="w-full flex justify-end  mb-10">
+    <div class="view-less-container w-full flex justify-end mb-10 p-4 bg-white border-t border-gray-200 sticky bottom-0">
       <p class="text-blue-500 cursor-pointer flex items-center" onclick="viewless()">
         View Less <i class="pi pi-angle-right ml-1"></i>
       </p>
     </div>
-      `;
-      
-      viewallDiv.innerHTML = '';
-      viewallDiv.appendChild(gridContainer);
-    }
-
+  `;
+  
+  viewallDiv.innerHTML = '';
+  viewallDiv.appendChild(gridContainer);
+}
     // Initialize with first section visible
     document.getElementById('section1').classList.remove('hidden');

@@ -64,4 +64,29 @@ body, html, * {
       margin-right: 0.25rem;
     }
 
-    
+    .grid-view-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.grid-content {
+  flex: 1;
+  padding-bottom: 20px;
+}
+
+.view-less-container {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  z-index: 10;
+}
+
+@media (min-width: 640px) {
+  .view-less-container {
+    position: static;
+    border-top: none;
+    padding: 0;
+    margin-bottom: 2.5rem;
+  }
+}
