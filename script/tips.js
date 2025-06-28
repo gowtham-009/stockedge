@@ -437,3 +437,32 @@ function renderGrid(data) {
       drawer.classList.add('hidden');
     }, 500); // matches the transition duration
   }
+
+  function searchfun(option){
+    if(option=='open'){
+          document.getElementById('searchcontainer').classList.remove('hidden')
+    }
+    else{
+                document.getElementById('searchcontainer').classList.add('hidden')
+
+    }
+
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('notifyToggle');
+    const notifyBox = document.getElementById('notifycontainer');
+
+    // Initially hidden is already set via class, no need to hide again here
+
+    toggleBtn.addEventListener('click', () => {
+      notifyBox.classList.toggle('hidden'); // Show/hide on click
+    });
+
+    // Optional: click outside to auto-hide
+    document.addEventListener('click', function (event) {
+      if (!notifyBox.contains(event.target) && !toggleBtn.contains(event.target)) {
+        notifyBox.classList.add('hidden');
+      }
+    });
+  });

@@ -83,14 +83,34 @@ body, html, * {
 }
 
 .menu{
-  display: none;
+  display: none !important;
+}
+
+.ser{
+  display: none !important;
 }
 
 @media(max-width:992px){
   .menu{
-    display: block;
+    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center!important;
  
   }
+  .ser{
+  display: block !important;
+}
+.serd{
+  display: none !important;
+}
+
+.loginreglogo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 }
 
 @media (min-width: 640px) {

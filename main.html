@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Header/Footer with Scrollable Main</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+      <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
+
+</head>
+<body class="h-screen flex flex-col bg-gray-100">
+    <!-- Fixed Header -->
+    <header class="bg-gray-100 gap-2 flex justify-between text-black shadow-lg fixed top-0 w-full z-10">
+      <div class="w-12 h-12  menu" >
+         <span id="openDrawer" class="text-xl text-gray mt-2 "><i class="pi pi-align-justify"></i></span>
+        </div>
+        <div class="w-12 h-12 p-1 rounded-full flex items-center " >
+          <img src="./css/images/slack.png" class="rounded-full" alt="">
+        </div>
+     
+        <div class=" h-12 p-1 w-full flex justify-between gap-5 items-center"  >
+          <div class="flex gap-2 items-center">
+            <p class="font-bold text-black text-gray-800 text-xl">StockEdge</p>
+           <div class=" px-2  bg-white flex items-center rounded-lg border-2 serd" >
+            <i class="pi pi pi-search"></i>
+              <input type="text" name="search" id="search" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900  placeholder:text-gray-400 outline-none  sm:text-sm/6" placeholder="Search..."  />
+          </div>
+          </div>
+         <div class="flex gap-5">
+           <span class="cursor-pointer ser" onclick="searchfun('open')"><i class="pi pi-search text-2xl mt-1"></i></span>
+         <span class="cursor-pointer"  id="notifyToggle">
+           <i class="pi pi-bell text-2xl p-1"></i>
+         </span>
+         </div>
+        </div>
+
+        <div id="searchcontainer" class="w-full absolute top-0 flex items-center gap-2 px-2 h-12 bg-white hidden">
+          <div class=" px-2 w-5/6 flex items-center rounded-lg border-2" >
+            <i class="pi pi pi-search"></i>
+              <input type="text" name="search" id="search" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900  placeholder:text-gray-400 outline-none  sm:text-sm/6" placeholder="Search..."  />
+          </div>
+
+          <button onclick="searchfun('close')" class="cursor-pointer  border-2 w-1/6 py-1 border-blue-800 bg-blue-100 text-blue-800 text-sm rounded-lg">Close</button>
+        </div>
+
+        
+    </header>
+<div id="notifycontainer" class="h-80 w-80 absolute hidden  rounded-lg bg-white right-3 top-10 z-10"></div>
+<div id="drawer" class="fixed inset-0 z-50 hidden">
+  <!-- Overlay/Backdrop -->
+  <div class="absolute inset-0 bg-black bg-opacity-50" onclick="closeDrawer()"></div>
+
+  <!-- Drawer Panel (Left Slide-in) -->
+  <div id="drawerPanel"
+       class="absolute inset-y-0 left-0 w-80 bg-white shadow-xl transform -translate-x-full transition-transform duration-500 ease-in-out">
+    <div class="flex justify-between items-center p-4 border-b">
+      <div class="flex items-center gap-2">
+        <div class="w-12 h-12 bg-gray-500 rounded-full"></div>
+        <p class="font-medium text-lg text-blue-500">Login / Register</p>
+      </div>
+      <button onclick="closeDrawer()" class="text-gray-500 hover:text-black">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+   <div class="px-2">
+     <div class="w-full h-16 bg-blue-100 flex items-center justify-between rounded-lg p-1" >
+      <span class="text-lg pl-2">Subscribe Now</span>
+      <span class="text-blue-800 bg-blue-100 border-2 border-blue-800 rounded-lg  px-4 py-1">Subscribe</span>
+    </div>
+   </div>
+    <div class="p-2">
+      <ul class="w-full">
+        <li class=" flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi  pi-chart-bar  text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">Market</div>
+          <div><i class="pi  pi-angle-right text-gray-500"></i></div>
+        </li>
+         <li class=" flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi  pi-search mt-2 text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">Analytics</div>
+          <div><i class="pi pi-angle-right text-gray-500"></i></div>
+        </li>
+         <li class=" flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi pi-objects-column mt-2 text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">My SE</div>
+          <div><i class="pi pi-angle-right text-gray-500"></i></div>
+        </li>
+          <li class="flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi  pi-money-bill mt-2 text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">Mutual Funds</div>
+          <div><i class="pi pi-angle-right text-gray-500"></i></div>
+        </li>
+
+       <li class="mt-2 flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi  pi-file-check mt-2 text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">My Plane</div>
+        </li>
+         <li class=" flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi  pi-indian-rupee mt-2 text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">Pricing</div>
+        </li>
+         <li class="mt-2 flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi  pi-sparkles mt-2 text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">Whats's News</div>
+        </li>
+         <li class=" flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi  pi-thumbs-up-fill mt-2 text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">Support</div>
+        </li>
+        <li class=" flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi  pi-cog mt-2 text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">Settings</div>
+        </li>
+         <li class=" flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi  pi-lock mt-2 text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">Policies</div>
+        </li>
+         <li class=" flex justify-between items-center gap-2" >
+          <div class="w-8"><i class="pi  pi-share-alt mt-2 text-xl text-gray-500"></i></div>
+          <div class="w-full text-lg text-gray-500">Spread The Word</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+    <!-- Scrollable Main Content -->
+    <main class="flex-1 overflow-y-auto mt-16 mb-16"> <!-- mt-16 and mb-16 account for header/footer height -->
+
+      <body class="bg-gray-50 p-4">
+  <div id="loading" class="w-full">
+    
+    <!-- Repeat this 6 times -->
+    <div class="animate-pulse w-full rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div class="h-4 w-24 bg-gray-200 rounded"></div>
+        <div class="h-6 w-12 bg-red-200 rounded-full"></div>
+      </div>
+      <div class="flex justify-between mb-2">
+        <div>
+          <div class="h-3 w-16 bg-gray-200 rounded mb-1"></div>
+          <div class="h-4 w-24 bg-gray-300 rounded"></div>
+        </div>
+        <div>
+          <div class="h-3 w-16 bg-gray-200 rounded mb-1"></div>
+          <div class="h-4 w-20 bg-gray-300 rounded"></div>
+        </div>
+      </div>
+      <div class="h-4 w-32 bg-gray-200 rounded mb-4"></div>
+      <div class="flex space-x-2 mb-4">
+        <div class="h-8 w-12 bg-gray-300 rounded"></div>
+        <div class="h-8 w-12 bg-gray-300 rounded"></div>
+        <div class="h-8 w-16 bg-gray-300 rounded"></div>
+      </div>
+      <div class="h-4 w-16 bg-gray-200 rounded mb-2"></div>
+      <div class="flex flex-wrap gap-2">
+        <div class="h-6 w-20 bg-gray-300 rounded-full"></div>
+        <div class="h-6 w-16 bg-gray-300 rounded-full"></div>
+        <div class="h-6 w-14 bg-gray-300 rounded-full"></div>
+      </div>
+    </div>
+
+    <!-- Copy/paste the block above 5 more times for 6 total -->
+
+  </div>
+</body>
+
+
+        <div id="content" class="container hidden mx-auto p-1">
+            <!-- 10 Sections -->
+           <section id="section1" class="bg-white rounded-xl shadow-sm p-2">
+    <div class="flex justify-between items-center w-full mb-4">
+      <h2 class="text-xl font-semibold text-slate-800">Tips</h2>
+      
+    </div>
+
+    <!-- Tab Buttons -->
+    <div class="flex gap-2 mb-4">
+      <button class="tab-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-sm transition active" data-tab="Sell">
+        Sell
+      </button>
+      <button class="tab-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-sm transition" data-tab="Buy">
+        Buy
+      </button>
+      <button class="tab-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-sm transition" data-tab="Hold">
+        Hold
+      </button>
+    </div>
+
+    <!-- Scroller -->
+    <div class="scroller-container px-2 py-2" id="scrollerContainer">
+      <div class="scroller-content" id="scrollerContent">
+        <!-- Cards will be inserted here by JavaScript -->
+      </div>
+    </div>
+
+   <div class="w-full flex justify-end">
+     <p class="text-blue-500 cursor-pointer  flex items-center" onclick="viewall()">
+        View All <i class="pi pi-angle-right ml-1"></i>
+      </p>
+   </div>
+  </section>
+
+  <section id="section2" class="bg-white rounded-xl shadow-sm p-2 hidden" >
+      <div class="flex justify-between items-center w-full mb-4">
+      <h2 class="text-xl font-semibold text-slate-800">Tips</h2>
+      
+    </div>
+
+   <div class="flex gap-2 mb-4">
+      <button onclick="filterGrid('All')" class="tab-filter-btn px-4 py-2 rounded-full border border-slate-200 bg-blue-500 text-white text-sm transition active" data-tab="All">
+        All
+      </button>
+      <button onclick="filterGrid('Buy')" class="tab-filter-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-sm transition" data-tab="Buy">
+        Buy
+      </button>
+      <button onclick="filterGrid('Sell')" class="tab-filter-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-sm transition" data-tab="Sell">
+        Sell
+      </button>
+      <button onclick="filterGrid('Hold')" class="tab-filter-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-sm transition" data-tab="Hold">
+        Hold
+      </button>
+    </div>
+
+    <div class="w-full" id="viewall">
+      <!-- Grid content will be inserted here -->
+    </div>
+
+ 
+  </section>
+
+           
+           
+        </div>
+    </main>
+
+    <!-- Fixed Footer -->
+    <footer class="bg-white gap-2 flex justify-between text-black p-2 shadow-xl fixed bottom-0 w-full z-10">
+      
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+        <i class="pi pi-chart-bar text-lg text-gray-500"></i>
+        <span class="text-gray-500 font-medium text-sm">Market</span>
+      </div>
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+        <i class="pi pi-search text-lg text-gray-500"></i>
+        <span class="text-gray-500 font-medium text-sm">Analytics</span>
+      </div>
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+        <i class="pi pi-objects-column text-lg text-gray-500"></i>
+        <span class="text-gray-500 font-medium text-sm">My SE</span>
+      </div>
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+        <i class="pi pi-money-bill text-lg text-gray-500"></i>
+        <span class="text-gray-500 font-medium text-sm">MF</span>
+      </div>
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+        <i class="pi pi-bars text-lg text-gray-500"></i>
+        <span class="text-gray-500 font-medium text-sm">Menu</span>
+      </div>
+    </footer>
+
+
+
+
+
+
+   
+
+
+   <script src="script/tips.js"></script>
+</body>
+</html>
