@@ -82,6 +82,17 @@ body, html, * {
   z-index: 10;
 }
 
+.menu{
+  display: none;
+}
+
+@media(max-width:992px){
+  .menu{
+    display: block;
+ 
+  }
+}
+
 @media (min-width: 640px) {
   .view-less-container {
     position: static;

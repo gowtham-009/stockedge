@@ -154,7 +154,6 @@ document.addEventListener('DOMContentLoaded', function () {
     maxPosition = 0;
     minPosition = containerWidth - contentWidth;
 
-    // Ensure it's aligned to the first card
     currentPosition = maxPosition;
     scrollerContent.style.transform = `translateX(${currentPosition}px)`;
   };
