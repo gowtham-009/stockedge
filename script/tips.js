@@ -466,3 +466,11 @@ function renderGrid(data) {
       }
     });
   });
+
+   document.getElementById('clientid').innerText=localStorage.getItem('name')
+   function logout(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('name')
+    localStorage.removeItem('mobile')
+    window.location.href='/'
+   }

@@ -6,62 +6,362 @@
     <title>Fixed Header/Footer with Scrollable Main</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
-      <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
-
+    <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
+       <script>
+      
+         (function() {
+            const token = localStorage.getItem('token');
+            
+            // If token EXISTS, redirect to main.html
+            if (token) {
+                window.location.replace('main.html');
+            }
+           
+        })();
+    </script>
 </head>
 <body class="h-screen flex flex-col bg-gray-100">
 
 <div class="flex min-h-full">
   <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-    <div class="mx-auto w-full max-w-sm lg:w-96">
+    <div id="registerform" class="mx-auto w-full max-w-sm lg:w-96" >
       <div class="loginreglogo">
         <img class="h-10 w-auto" src="./css/images/slack.png" alt="Your Company" />
-        <h2 class="mt-8 text-2xl/9 font-bold tracking-tight text-gray-900">Registration</h2>
-       
+        <h2 class="mt-2 text-2xl/9 font-bold tracking-tight text-gray-900">Registration</h2>
       </div>
 
-      <div class="mt-10">
+      <div class="mt-10" id="register_form">
         <div>
-          <form action="#" method="POST" class="space-y-6">
+          <form class="space-y-6" id="registrationForm">
 
             <div>
-              <label for="email" class="block text-sm/6 font-medium text-gray-900">User name</label>
+              <label for="name" class="block text-sm/6 font-medium text-gray-900">User name</label>
               <div class="mt-2">
-                <input type="text" name="name" id="email"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
+                <input type="text" name="name" id="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
               </div>
+              <span class="text-red-500 text-sm hidden" id="nameerror">Please enter username</span>
             </div>
 
-             <div>
-              <label for="email" class="block text-sm/6 font-medium text-gray-900">Mobile number</label>
+            <div>
+              <label for="mobilenum" class="block text-sm/6 font-medium text-gray-900">Mobile number</label>
               <div class="mt-2">
-                <input type="text" name="number" id="mobilenum"  required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
+                <input type="text" name="number" id="mobilenum" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
               </div>
+              <span class="text-red-500 text-sm hidden" id="mobileerror">Please enter a valid 10-digit mobile number</span>
             </div>
-
 
             <div>
               <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
               <div class="mt-2">
-                <input type="email" name="email" id="email"  required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
+                <input type="email" name="email" id="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
               </div>
+              <span class="text-red-500 text-sm hidden" id="emailerror">Please enter a valid email address</span>
             </div>
-
-             
 
             <div>
               <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
             </div>
           </form>
         </div>
-
-      
       </div>
     </div>
+  <div id="loginform" class="mx-auto w-full max-w-sm lg:w-96 hidden" >
+    <div class="loginreglogo">
+        <img class="h-10 w-auto" src="./css/images/slack.png" alt="Your Company" />
+        <h2 class="mt-2 text-2xl/9 font-bold tracking-tight text-gray-900">Log in</h2>
+      </div>
+
+       <div>
+              <label for="otpnumber" class="block text-sm/6 font-medium text-gray-900">Mobile number</label>
+              <div class="mt-2">
+                <input readonly type="text" name="number" id="otpnumber" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
+              </div>
+
+              
+             
+            </div>
+
+
+      <div class="w-full max-w-md mt-3 hidden" id="otpbox">
+        <h2 class="text-2xl font-bold text-left">OTP Sent</h2>
+        
+        <div class="flex justify-between space-x-2 mb-2 mt-2" id="otp-container">
+            <!-- OTP inputs will be generated here -->
+        </div>
+        
+      
+        <span class="text-red-500 text-lg hidden" id="otperror"></span>
+        <p class="text-center mt-6 text-gray-500">
+            Didn't receive code? 
+            <a href="#" class="text-blue-600 hover:text-blue-800">Resend</a>
+        </p>
+    </div>
+
+     <div class="mt-2">
+              <button type="button" onclick="login()" id="logbtn" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</button>
+            </div>
+
+  </div>
+    
   </div>
   <div class="relative hidden w-0 flex-1 lg:block">
     <img class="absolute inset-0 size-full object-cover" src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80" alt="" />
   </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements
+    const nameInput = document.getElementById('name');
+    const mobileInput = document.getElementById('mobilenum');
+    const emailInput = document.getElementById('email');
+    const submitButton = document.querySelector('#registrationForm button[type="submit"]');
+    const registrationForm = document.getElementById('registrationForm');
+    const registerFormSection = document.getElementById('registerform');
+    const loginFormSection = document.getElementById('loginform');
 
+    // Initial state - disable submit button
+    submitButton.disabled = true;
+    submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+    // Event Listeners
+    nameInput.addEventListener('input', handleNameInput);
+    mobileInput.addEventListener('input', handleMobileInput);
+    emailInput.addEventListener('input', validateForm);
+    registrationForm.addEventListener('submit', handleFormSubmit);
+
+   function handleNameInput() {
+        // Remove any non-alphabet characters (including numbers and special chars)
+        this.value = this.value.replace(/[^A-Za-z ]/g, '');
+        
+        // Convert to uppercase (as per your original requirement)
+        const cursorPosition = this.selectionStart;
+        this.value = this.value.toUpperCase();
+        this.setSelectionRange(cursorPosition, cursorPosition);
+        
+        validateForm();
+    }
+
+    function handleMobileInput() {
+        this.value = this.value.replace(/\D/g, '');
+        if (this.value.length > 10) {
+            this.value = this.value.slice(0, 10);
+        }
+        validateForm();
+    }
+
+    // Validation Functions (silent validation - doesn't show errors)
+    function validateForm() {
+        const isNameValid = nameInput.value.trim().length > 0;
+        const isMobileValid = mobileInput.value.trim().length === 10 && /^\d+$/.test(mobileInput.value.trim());
+        const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+        
+        // Update button state only
+        submitButton.disabled = !(isNameValid && isMobileValid && isEmailValid);
+        submitButton.classList.toggle('opacity-50', submitButton.disabled);
+        submitButton.classList.toggle('cursor-not-allowed', submitButton.disabled);
+        
+        return isNameValid && isMobileValid && isEmailValid;
+    }
+
+    // Form Submission with error display
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        
+        // Hide all errors first
+        document.querySelectorAll('[id$="error"]').forEach(el => {
+            el.classList.add('hidden');
+        });
+
+        let isFormValid = true;
+
+        // Validate Name
+        const nameValue = nameInput.value.trim();
+        if (!nameValue) {
+            document.getElementById('nameerror').classList.remove('hidden');
+            isFormValid = false;
+        }
+
+        // Validate Mobile
+        const mobileValue = mobileInput.value.trim();
+        if (!mobileValue) {
+            document.getElementById('mobileerror').textContent = 'Mobile number is required';
+            document.getElementById('mobileerror').classList.remove('hidden');
+            isFormValid = false;
+        } else if (mobileValue.length !== 10 || !/^\d+$/.test(mobileValue)) {
+            document.getElementById('mobileerror').textContent = 'Please enter a valid 10-digit mobile number';
+            document.getElementById('mobileerror').classList.remove('hidden');
+            isFormValid = false;
+        }
+
+        // Validate Email
+        const emailValue = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailValue) {
+            document.getElementById('emailerror').textContent = 'Email is required';
+            document.getElementById('emailerror').classList.remove('hidden');
+            isFormValid = false;
+        } else if (!emailRegex.test(emailValue)) {
+            document.getElementById('emailerror').textContent = 'Please enter a valid email address';
+            document.getElementById('emailerror').classList.remove('hidden');
+            isFormValid = false;
+        }
+
+        if (isFormValid) {
+            // Form is valid, proceed with submission
+            alert('Form submitted successfully!');
+            registerFormSection.classList.add('hidden');
+            loginFormSection.classList.remove('hidden');
+            document.getElementById('otpnumber').value = document.getElementById('mobilenum').value;
+        } else {
+            // Focus on first invalid field
+            const firstError = document.querySelector('[id$="error"]:not(.hidden)');
+            if (firstError) {
+                const inputId = firstError.id.replace('error', '');
+                document.getElementById(inputId).focus();
+            }
+        }
+    }
+});
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+            const otpContainer = document.getElementById('otp-container');
+            
+            // Create 6 input boxes
+            for (let i = 0; i < 5; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.inputMode = 'numeric'; // Shows numeric keypad on mobile
+                input.pattern = '[0-9]*'; // HTML5 pattern for numbers only
+                input.maxLength = 1;
+                input.className = 'w-12 h-12 text-2xl text-center border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition';
+                input.dataset.index = i;
+                
+                // Allow only numbers (0-9)
+                input.addEventListener('keypress', function(e) {
+                    if (e.key < '0' || e.key > '9') {
+                        e.preventDefault();
+                    }
+                });
+                
+                // Auto-focus to next input when a digit is entered
+                input.addEventListener('input', function(e) {
+                    // Remove any non-numeric characters
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    
+                    if (this.value.length === 1) {
+                        const nextIndex = parseInt(this.dataset.index) + 1;
+                        const nextInput = otpContainer.querySelector(`input[data-index="${nextIndex}"]`);
+                        if (nextInput) nextInput.focus();
+                    }
+                });
+                
+                // Handle backspace to move to previous input
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value === '') {
+                        const prevIndex = parseInt(this.dataset.index) - 1;
+                        const prevInput = otpContainer.querySelector(`input[data-index="${prevIndex}"]`);
+                        if (prevInput) prevInput.focus();
+                    }
+                });
+                
+                // Prevent paste of non-numeric content
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text/plain').replace(/[^0-9]/g, '');
+                    if (pasteData) {
+                        this.value = pasteData.charAt(0);
+                        if (pasteData.length > 1) {
+                            const nextIndex = parseInt(this.dataset.index) + 1;
+                            const nextInput = otpContainer.querySelector(`input[data-index="${nextIndex}"]`);
+                            if (nextInput) {
+                                nextInput.focus();
+                                nextInput.value = pasteData.charAt(1);
+                                // Continue for remaining digits if needed
+                            }
+                        }
+                    }
+                });
+                
+                otpContainer.appendChild(input);
+            }
+            
+            // Focus first input on load
+            otpContainer.querySelector('input[data-index="0"]').focus();
+        });
+
+
+     const generate30DigitToken = () => {
+  const digits = [];
+  
+ 
+  const randomValues = new Uint32Array(30);
+  crypto.getRandomValues(randomValues);
+  
+
+  for (let i = 0; i < 30; i++) {
+    digits.push(randomValues[i] % 10); // Modulo 10 gives us 0-9
+  }
+  
+
+  return digits.join('');
+};
+
+
+
+
+        function login(){
+          
+          if(document.getElementById('logbtn').innerText==='Login'){
+             document.getElementById('otpbox').classList.remove('hidden')
+          document.getElementById('logbtn').innerHTML=''
+           document.getElementById('logbtn').innerText='Verify OTP'
+          }
+          else if(document.getElementById('logbtn').innerText==='Verify OTP'){
+           verifyOTP()
+          }
+         
+        }
+
+        function verifyOTP() {
+          const validotp="12345"
+  // Get all OTP input values
+  const otpInputs = document.querySelectorAll('#otpbox input');
+  let otp = '';
+  
+  // Combine all OTP digits
+  otpInputs.forEach(input => {
+    otp += input.value;
+  });
+  
+  // Validate OTP length
+  if (otp.length !== 5) {
+     document.getElementById('otperror').innerHTML='Please enter a complete 5-digit OTP code'
+   document.getElementById('otperror').classList.remove('hidden')
+  
+    return;
+  }
+
+  else if(otp==validotp){
+     document.getElementById('otperror').classList.add('hidden')
+     const token = generate30DigitToken();
+        localStorage.setItem('name', document.getElementById('name').value)
+        localStorage.setItem('mobile', document.getElementById('mobilenum').value)
+     localStorage.setItem('token', token)
+ alert('OTP verification successful!');
+ window.location.href='/main.html'
+  }
+  else{
+    document.getElementById('otperror').innerHTML='invalid otp'
+   document.getElementById('otperror').classList.remove('hidden')
+  }
+  
+ 
+  
+
+  // window.location.href = '/dashboard';
+}
+
+</script>
 </body>
 </html>
