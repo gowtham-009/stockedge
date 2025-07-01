@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const renderProducts = () => {
     scrollerContent.innerHTML = '';
-
     filteredProducts.forEach(item => {
       const card = document.createElement('div');
       card.className = 'flex-none w-[360px] bg-gray-50 border border-gray-200 rounded-xl p-2 transition-all hover:-translate-y-0.5 hover:shadow-sm';
@@ -245,8 +244,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // Fetch and initialize data
   const fetchStockData = async () => {
 
-    
-
     try {
       const response = await fetch('/data/data.json');
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -255,9 +252,8 @@ document.addEventListener('DOMContentLoaded', function () {
           document.getElementById('loading').classList.add('hidden')
         document.getElementById('content').classList.remove('hidden')
          const order = ['Sell', 'Buy', 'Hold'];
-      products = order.flatMap(status => data.filter(item => item.status === status));
-
-      setTab(activeTab);
+         products = order.flatMap(status => data.filter(item => item.status === status).slice(0, 5));
+         setTab(activeTab);
       }
      
     } catch (error) {
@@ -267,8 +263,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   fetchStockData();
 });
-
-
     let allStockData = [];
     let currentFilter = 'All';
 
@@ -344,7 +338,7 @@ function renderGrid(data) {
   
   gridContainer.innerHTML = `
     <ul role="list" class="grid-content mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-      ${data.map(item => `
+      ${data.map(item =>`
         <li class="col-span-1 px-2 py-2 flex rounded-md border-2">
           <div class="w-full">
             <div class="w-full flex gap-1 items-center">

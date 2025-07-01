@@ -320,6 +320,105 @@
     "reports": ["coal_india1.pdf", "coal_india2.pdf", "coal_india3.pdf"]
   },
   {
+    "stock": "Larsen & Toubro",
+    "logo": "img",
+    "authors": ["Motilal Oswal", "Axis Capital", "ICICI Securities"],
+    "ltp": "3200.00",
+    "target": "3500.00",
+    "price_at_reco": "3100.00",
+    "upside": "12.90",
+    "status": "Buy",
+    "reports": ["lt_report1.pdf", "lt_report2.pdf", "lt_report3.pdf"]
+  },
+  {
+    "stock": "Power Grid",
+    "logo": "img",
+    "authors": ["HDFC Securities", "Sharekhan", "YES Securities"],
+    "ltp": "260.50",
+    "target": "280.00",
+    "price_at_reco": "255.00",
+    "upside": "9.80",
+    "status": "Hold",
+    "reports": ["powergrid1.pdf", "powergrid2.pdf", "powergrid3.pdf"]
+  },
+  {
+    "stock": "Britannia Industries",
+    "logo": "img",
+    "authors": ["Kotak Securities", "Edelweiss", "Axis Capital"],
+    "ltp": "5100.00",
+    "target": "5400.00",
+    "price_at_reco": "5000.00",
+    "upside": "8.00",
+    "status": "Buy",
+    "reports": ["britannia1.pdf", "britannia2.pdf", "britannia3.pdf"]
+  },
+  {
+    "stock": "UltraTech Cement",
+    "logo": "img",
+    "authors": ["CLSA", "UBS", "Bernstein"],
+    "ltp": "9000.00",
+    "target": "9500.00",
+    "price_at_reco": "8800.00",
+    "upside": "7.95",
+    "status": "Hold",
+    "reports": ["ultratech1.pdf", "ultratech2.pdf", "ultratech3.pdf"]
+  },
+  {
+    "stock": "HCL Technologies",
+    "logo": "img",
+    "authors": ["Jefferies", "Citi", "Barclays"],
+    "ltp": "1400.00",
+    "target": "1500.00",
+    "price_at_reco": "1350.00",
+    "upside": "11.11",
+    "status": "Buy",
+    "reports": ["hcltech1.pdf", "hcltech2.pdf", "hcltech3.pdf"]
+  },
+  {
+    "stock": "Grasim Industries",
+    "logo": "img",
+    "authors": ["Deutsche Bank", "Macquarie", "BNP Paribas"],
+    "ltp": "2000.00",
+    "target": "2100.00",
+    "price_at_reco": "1950.00",
+    "upside": "7.69",
+    "status": "Hold",
+    "reports": ["grasim1.pdf", "grasim2.pdf", "grasim3.pdf"]
+  },
+  {
+    "stock": "Divi's Laboratories",
+    "logo": "img",
+    "authors": ["Antique Stock", "PhillipCapital", "Centrum Broking"],
+    "ltp": "3700.00",
+    "target": "4000.00",
+    "price_at_reco": "3600.00",
+    "upside": "11.11",
+    "status": "Buy",
+    "reports": ["divis1.pdf", "divis2.pdf", "divis3.pdf"]
+  },
+  {
+    "stock": "Eicher Motors",
+    "logo": "img",
+    "authors": ["Emkay Global", "Spark Capital", "IIFL Securities"],
+    "ltp": "3800.00",
+    "target": "4000.00",
+    "price_at_reco": "3700.00",
+    "upside": "8.11",
+    "status": "Hold",
+    "reports": ["eicher1.pdf", "eicher2.pdf", "eicher3.pdf"]
+  },
+  {
+    "stock": "Havells India",
+    "logo": "img",
+    "authors": ["Anand Rathi", "Geojit Financial", "LKP Securities"],
+    "ltp": "1400.00",
+    "target": "1500.00",
+    "price_at_reco": "1375.00",
+    "upside": "9.09",
+    "status": "Buy",
+    "reports": ["havells1.pdf", "havells2.pdf", "havells3.pdf"]
+  },
+  {
     "stock": "Dr. Reddy's",
     "logo": "img",
     "authors": ["DAM Capital", "Incred Capital", "BOB Capital"],
