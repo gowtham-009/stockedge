@@ -2,9 +2,8 @@
 
 *{
     font-family: 'Inter', sans-serif;
-   
 }
-/* Disable user text selection and long-press dictionary popup globally */
+
 body, html, * {
     overflow: hidden;
   user-select: none;
@@ -49,7 +48,7 @@ body, html, * {
       scrollbar-width: none;
     }
 
-    /* Custom chip style to match PrimeVue */
+   
     .chip {
       display: inline-flex;
       align-items: center;
@@ -64,7 +63,7 @@ body, html, * {
       margin-right: 0.25rem;
     }
 
-    .grid-view-container {
+  .grid-view-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
