@@ -461,10 +461,12 @@ function renderGrid(data) {
     });
   });
 
-   document.getElementById('clientid').innerText=localStorage.getItem('mobile')
-   function logout(){
+  document.getElementById('clientid').innerText=localStorage.getItem('mobile')
+  function logout(){
     localStorage.removeItem('token')
     localStorage.removeItem('name')
     localStorage.removeItem('mobile')
     window.location.href='/'
    }
+
+  document.getElementById('clientnumber').innerText=localStorage.getItem('mobile')
