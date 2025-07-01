@@ -334,8 +334,7 @@ function renderGrid(data) {
   }
 
   const gridContainer = document.createElement('div');
-  gridContainer.className = 'grid-view-container'; // Added container class
-  
+  gridContainer.className = 'grid-view-container'; 
   gridContainer.innerHTML = `
     <ul role="list" class="grid-content mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
       ${data.map(item =>`
