@@ -467,7 +467,7 @@ function renderGrid(data) {
     });
   });
 
-   document.getElementById('clientid').innerText=localStorage.getItem('name')
+   document.getElementById('clientid').innerText=localStorage.getItem('mobile')
    function logout(){
     localStorage.removeItem('token')
     localStorage.removeItem('name')
