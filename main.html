@@ -23,14 +23,14 @@
 <body class="h-screen flex flex-col bg-gray-100">
     <!-- Fixed Header -->
     <header class="bg-gray-100 gap-2 flex justify-between text-black shadow-lg fixed top-0 w-full z-10">
-      <div class="w-12 h-12  menu" >
+      <div class="w-12 h-14  menu" >
          <span id="openDrawer" class="text-xl text-gray mt-2 "><i class="pi pi-align-justify"></i></span>
         </div>
-        <div class="w-12 h-12 p-1 rounded-full flex items-center " >
+        <div class="w-12 h-14 p-1 rounded-full flex items-center " >
           <img src="./css/images/slack.png" class="rounded-full" alt="">
         </div>
      
-        <div class=" h-12 p-1 w-full flex justify-between gap-5 items-center"  >
+        <div class=" h-14 p-1 w-full flex justify-between gap-5 items-center"  >
           <div class="flex gap-2 items-center">
             <p class="font-bold text-black text-gray-800 text-xl">StockEdge</p>
            <div class=" px-2  bg-white flex items-center rounded-lg border-2 serd" >
@@ -47,7 +47,7 @@
          </div>
         </div>
 
-        <div id="searchcontainer" class="w-full absolute top-0 flex items-center gap-2 px-2 h-12 bg-white hidden">
+        <div id="searchcontainer" class="w-full absolute top-0 flex items-center gap-2 px-2 h-14 bg-white hidden">
           <div class=" px-2 w-5/6 flex items-center rounded-lg border-2" >
             <i class="pi pi pi-search"></i>
               <input type="text" name="search" id="search" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900  placeholder:text-gray-400 outline-none  sm:text-sm/6" placeholder="Search..."  />
@@ -75,7 +75,8 @@
   <!-- Drawer Panel (Left Slide-in) -->
   <div id="drawerPanel"
        class="absolute inset-y-0 flex flex-col justify-between left-0 w-80 bg-white shadow-xl transform -translate-x-full transition-transform duration-500 ease-in-out">
-    <div class="flex justify-between items-center p-4 border-b">
+   <div class="w-full">
+     <div class="flex justify-between items-center p-4 border-b">
       <div class="flex items-center gap-2">
         <div class="w-12 h-12 bg-gray-500 rounded-full"></div>
         <p class="font-medium text-lg text-blue-500" id="clientid"></p>
@@ -94,67 +95,68 @@
    </div>
     <div class="p-2">
       <ul class="w-full">
-        <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-chart-bar  text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">Market</div>
+        <li class=" flex justify-between items-center gap-2">
+          <div class="w-8"><i class="pi  pi-chart-bar  text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">Market</div>
           <div><i class="pi  pi-angle-right text-gray-500"></i></div>
         </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-search mt-2 text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">Analytics</div>
+         <li class=" flex justify-between items-center gap-2">
+          <div class="w-8"><i class="pi  pi-search mt-2 text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">Analytics</div>
           <div><i class="pi pi-angle-right text-gray-500"></i></div>
         </li>
          <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi pi-objects-column mt-2 text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">My SE</div>
+          <div class="w-8"><i class="pi pi-objects-column mt-2 text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">My SE</div>
           <div><i class="pi pi-angle-right text-gray-500"></i></div>
         </li>
           <li class="flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-money-bill mt-2 text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">Mutual Funds</div>
+          <div class="w-8"><i class="pi  pi-money-bill mt-2 text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">Mutual Funds</div>
           <div><i class="pi pi-angle-right text-gray-500"></i></div>
         </li>
 
        <li class="mt-2 flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-file-check mt-2 text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">My Plane</div>
+          <div class="w-8"><i class="pi  pi-file-check mt-2 text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">My Plane</div>
         </li>
          <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-indian-rupee mt-2 text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">Pricing</div>
+          <div class="w-8"><i class="pi  pi-indian-rupee mt-2 text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">Pricing</div>
         </li>
          <li class="mt-2 flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-sparkles mt-2 text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">Whats's News</div>
+          <div class="w-8"><i class="pi  pi-sparkles mt-2 text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">Whats's News</div>
         </li>
          <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-thumbs-up-fill mt-2 text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">Support</div>
+          <div class="w-8"><i class="pi  pi-thumbs-up-fill mt-2 text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">Support</div>
         </li>
         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-cog mt-2 text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">Settings</div>
+          <div class="w-8"><i class="pi  pi-cog mt-2 text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">Settings</div>
         </li>
          <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-lock mt-2 text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">Policies</div>
+          <div class="w-8"><i class="pi  pi-lock mt-2 text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">Policies</div>
         </li>
          <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-share-alt mt-2 text-xl text-gray-500"></i></div>
-          <div class="w-full text-lg text-gray-500">Spread The Word</div>
+          <div class="w-8"><i class="pi  pi-share-alt mt-2 text-md text-gray-500"></i></div>
+          <div class="w-full text-md text-gray-500">Spread The Word</div>
         </li>
       </ul>
     </div>
+   </div>
 
     <div class="w-full p-1">
-        <button type="button" onclick="logout()" class="text-blue-500 flex justify-center items-center gap-2 px-2  py-2 rounded-lg ">Log out <i class="pi pi-sign-out"></i></button>
+        <button type="button" onclick="logout()" class="text-blue-500 flex w-full bg-gray-100 shadow-lg justify-center items-center gap-2 px-2  py-2 rounded-lg ">Log out <i class="pi pi-sign-out"></i></button>
     </div>
   </div>
 </div>
     <!-- Scrollable Main Content -->
     <main class="flex-1 overflow-y-auto mt-16 mb-16"> <!-- mt-16 and mb-16 account for header/footer height -->
 
-      <body class="bg-gray-50 p-4">
+      
   <div id="loading" class="w-full">
     
     <!-- Repeat this 6 times -->
@@ -190,19 +192,20 @@
    
 
   </div>
-</body>
+
+<section id="mainsection1" class="block">
 
 
         <div id="content" class="container hidden mx-auto p-1">
             <!-- 10 Sections -->
            <section id="section1" class="bg-white rounded-xl shadow-sm p-2">
-    <div class="flex justify-between items-center w-full mb-4">
+    <div class="flex justify-between items-center w-full mb-1">
       <h2 class="text-xl font-semibold text-slate-800">Tips</h2>
       
     </div>
 
     <!-- Tab Buttons -->
-    <div class="flex gap-2 mb-4">
+    <div class="flex gap-2 mb-1">
       <button class="tab-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-sm transition active" data-tab="Sell">
         Sell
       </button>
@@ -229,12 +232,12 @@
   </section>
 
   <section id="section2" class="bg-white rounded-xl shadow-sm p-2 hidden" >
-      <div class="flex justify-between items-center w-full mb-4">
+      <div class="flex justify-between items-center w-full ">
       <h2 class="text-xl font-semibold text-slate-800">Tips</h2>
       
     </div>
 
-   <div class="flex gap-2 mb-4">
+   <div class="flex gap-2 mb-2">
       <button onclick="filterGrid('All')" class="tab-filter-btn px-4 py-2 rounded-full border border-slate-200 bg-blue-500 text-white text-sm transition active" data-tab="All">
         All
       </button>
@@ -259,16 +262,21 @@
            
            
         </div>
+</section>
+
+<section id="mainsection2" class="hidden" style="border: 2px solid red;">
+
+</section>
     </main>
 
     <!-- Fixed Footer -->
-    <footer class="bg-white gap-2 flex justify-between text-black p-2 shadow-xl fixed bottom-0 w-full z-10">
+    <footer class="bg-white gap-2 flex justify-between text-black p-1 shadow-xl fixed bottom-0 w-full z-10">
       
-      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center" onclick="sectiontab('mainsection1')">
         <i class="pi pi-chart-bar text-lg text-gray-500"></i>
         <span class="text-gray-500 font-medium text-sm">Market</span>
       </div>
-      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center" onclick="sectiontab('mainsection2')">
         <i class="pi pi-search text-lg text-gray-500"></i>
         <span class="text-gray-500 font-medium text-sm">Analytics</span>
       </div>
@@ -286,6 +294,23 @@
       </div>
     </footer>
    <script src="script/tips.js"></script>
+
+   <script>
+ 
+     function sectiontab(sectionId) {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      if (section.id === sectionId) {
+        section.classList.remove('hidden');
+        section.classList.add('block');
+      } else {
+        section.classList.remove('block');
+        section.classList.add('hidden');
+      }
+    });
+  }
+    
+   </script>
    
 </body>
 </html>
