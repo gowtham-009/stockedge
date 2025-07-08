@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Card Carousel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .carousel-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-4xl w-full">
+        <div class="carousel-wrapper rounded-xl shadow-xl bg-white">
+            <!-- Carousel container -->
+            <div id="carousel" class="carousel-container">
+                <!-- Card 1 -->
+                <div class="carousel-item p-6">
+                    <div class="h-full bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+                        <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                            <span class="text-white text-4xl font-bold">Card 1</span>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Beautiful Design</h3>
+                            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="carousel-item p-6">
+                    <div class="h-full bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+                        <div class="h-48 bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center">
+                            <span class="text-white text-4xl font-bold">Card 2</span>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Responsive Layout</h3>
+                            <p class="text-gray-600">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="carousel-item p-6">
+                    <div class="h-full bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+                        <div class="h-48 bg-gradient-to-r from-orange-500 to-yellow-400 flex items-center justify-center">
+                            <span class="text-white text-4xl font-bold">Card 3</span>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Modern Features</h3>
+                            <p class="text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dots navigation -->
+            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                <button class="dot w-3 h-3 rounded-full bg-gray-400 bg-opacity-50 transition-all duration-300" data-index="0"></button>
+                <button class="dot w-3 h-3 rounded-full bg-gray-400 bg-opacity-50 transition-all duration-300" data-index="1"></button>
+                <button class="dot w-3 h-3 rounded-full bg-gray-400 bg-opacity-50 transition-all duration-300" data-index="2"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousel = document.getElementById('carousel');
+            const dots = document.querySelectorAll('.dot');
+            let currentIndex = 0;
+            const cardCount = document.querySelectorAll('.carousel-item').length;
+            
+            // Auto-rotate every 5 seconds
+            let interval = setInterval(nextSlide, 5000);
+            
+            // Update carousel position
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.remove('bg-opacity-50', 'w-3');
+                        dot.classList.add('bg-opacity-100', 'w-6', 'bg-gray-700');
+                    } else {
+                        dot.classList.remove('bg-opacity-100', 'w-6', 'bg-gray-700');
+                        dot.classList.add('bg-opacity-50', 'w-3', 'bg-gray-400');
+                    }
+                });
+                
+                // Reset auto-rotate timer
+                clearInterval(interval);
+                interval = setInterval(nextSlide, 5000);
+            }
+            
+            // Next slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % cardCount;
+                updateCarousel();
+            }
+            
+            // Previous slide
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + cardCount) % cardCount;
+                updateCarousel();
+            }
+            
+            // Dot click event
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    currentIndex = parseInt(dot.getAttribute('data-index'));
+                    updateCarousel();
+                });
+            });
+            
+            // Initialize
+            updateCarousel();
+        });
+    </script>
+</body>
+</html>

@@ -4,13 +4,7 @@
     font-family: 'Inter', sans-serif;
 }
 
-body, html, * {
-    overflow: hidden;
-  user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -webkit-touch-callout: none;
-}
+
 *{
     box-sizing: border-box;
     padding: 0%;
