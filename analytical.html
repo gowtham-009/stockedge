@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="css/style.css">
       <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
       <style>
-
+  body, html, * {
+     overflow: hidden;
+     user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+}
       </style>
     <script>
       
@@ -35,7 +41,7 @@
      
         <div class=" h-14 p-1 w-full flex justify-between gap-5 items-center"  >
           <div class="flex gap-2 items-center">
-            <p class="font-bold text-black text-gray-800 text-xl">MY SE</p>
+            <p class="font-bold text-black text-gray-800 text-xl">Analytics</p>
            <div class=" px-2  bg-white flex items-center rounded-lg border-2 serd" >
             <i class="pi pi pi-search"></i>
               <input type="text" name="search" id="search" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900  placeholder:text-gray-400 outline-none  sm:text-sm/6" placeholder="Search..."  />
@@ -161,76 +167,6 @@
     <main class="flex-1 overflow-y-auto mt-16 mb-16"> <!-- mt-16 and mb-16 account for header/footer height -->
 
 
-
-
-<section class="w-full px-2" >
-<div class="w-full bg-white shadow-md rounded-lg px-2 py-2" style="background-image: url('https://cdn-icons-png.flaticon.com/128/1828/1828884.png'); background-position: bottom right; background-repeat: no-repeat; background-size: 50px;">       <div class="w-full flex justify-between items-center">
-         <p class="text-black text-lg font-medium">My Portfolios</p>
-         <button class="bg-blue-800 text-white text-sm px-2 py-1 rounded-lg">Create Portfolio</button>
-       </div>
-       <p class="text-gray-500 text-sm mt-7">Track your portfolio with Broker, Auto and Manual options. Get Daily Insights on your Stocks</p>
-    </div>
-
-
-</section>
-
-       <section class="p-1 overflow-hidden" >
-  <div class="w-full p-1 flex gap-2 overflow-x-auto touch-pan-x select-none" 
-       
-       id="draggable">
-    <div class="p-1 flex flex-shrink-0  justify-center flex-col gap-2 items-center" >
-      <div class="w-12 h-12 rounded-full bg-white shadow-lg flex justify-center items-center">
-          <img src="https://cdn-icons-png.flaticon.com/128/3281/3281306.png" class="w-8 h-8" alt="">
-        
-      </div>
-      <p class="text-center text-xs text-gray-500 form-normal">My Scans</p>
-    </div>
-    <div class="p-1 flex flex-shrink-0 justify-center flex-col gap-2 items-center" >
-      <div class="w-12 h-12 rounded-full bg-white shadow-lg flex justify-center items-center">
-        <img src="https://cdn-icons-png.flaticon.com/128/15913/15913792.png" class="w-8 h-8" alt="">
-      </div>
-      <p class="text-center text-xs text-gray-500 form-normal">My Company</p>
-    </div>
-    <div class="p-1 flex flex-shrink-0 justify-center flex-col gap-2 items-center" >
-      <div class="w-12 h-12 rounded-full bg-white shadow-lg flex justify-center items-center">
-       <img src="https://cdn-icons-png.flaticon.com/128/13383/13383019.png" class="w-8 h-8" alt="">
-      </div>
-       <p class="text-center text-xs text-gray-500 form-normal">My Target</p>
-    </div>
-    <div class="p-1 flex flex-shrink-0 justify-center flex-col gap-2 items-center" >
-      <div class="w-12 h-12 rounded-full bg-white shadow-lg flex justify-center items-center">
-        <img src="https://cdn-icons-png.flaticon.com/128/2979/2979677.png" class="w-8 h-8" alt="">
-      </div>
-       <p class="text-center text-xs text-gray-500 form-normal">My Stock</p>
-    </div>
-    
-    <div class="p-1 flex flex-shrink-0 justify-center flex-col gap-2 items-center" >
-      <div class="w-12 h-12 rounded-full bg-white shadow-lg flex justify-center items-center">
-        <img src="https://cdn-icons-png.flaticon.com/128/512/512142.png" class="w-8 h-8" alt="">
-      </div>
-      <p class="text-center text-xs text-gray-500 form-normal">More</p>
-    </div>
-   
-  </div>
-</section>
-
-
-<section class="w-full px-2" >
-<div class="w-full bg-white shadow-md rounded-lg px-2 py-2" >     
-      <div class="w-full flex justify-between items-center">
-         <p class="text-black text-lg font-medium">My Watchlists</p>
-        <p class="text-blue-500 cursor-pointer  flex items-center">
-        View All <i class="pi pi-angle-right ml-1"></i>
-      </p>
-       </div>
-       <p class="text-xs text-gray-500 font-normal mt-2">Top Performing Stock</p>
-       <p class="text-sm text-black font-medium" style="margin-top: -2px;">Add Stocks to My Watchlists</p>
-
-         <p class="text-xs text-gray-500 font-normal mt-3">Worst Performing Stock</p>
-       <p class="text-sm text-black font-medium" style="margin-top: -2px;">Add Stocks to My Watchlists</p>
-    </div>
-</section>
-
     </main>
 
     <!-- Fixed Footer -->
@@ -240,73 +176,25 @@
         <i class="pi pi-chart-bar text-lg text-gray-500"></i>
         <a href="main.html" class="text-gray-500 font-medium text-sm " >Market</a>
       </div>
-      <div class="w-full h-14 flex justify-center items-center flex-col justify-center" >
-        <i class="pi pi-search text-lg text-gray-500"></i>
-        <a href="analytical.html" class="text-gray-500 font-medium text-sm" >Analytics</a>
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center"style="border-top: 3px solid blue;" >
+        <i class="pi pi-search text-lg text-gray-500"  style="color: blue;"></i>
+        <a href="analytical.html" class="text-gray-500 font-medium text-sm"style="color: blue;" >Analytics</a>
       </div>
-       <div class="w-full h-14 flex justify-center items-center flex-col justify-center" style="border-top: 3px solid blue;">
-        <i class="pi pi-objects-column text-lg text-gray-500"  style="color: blue;"></i>
-        <a href="my.html" class="text-gray-500 font-medium text-sm" style="color: blue;">My SE</a>
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+        <i class="pi pi-objects-column text-lg text-gray-500"></i>
+        <a href="my.html" class="text-gray-500 font-medium text-sm">My SE</a>
       </div>
       <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
         <i class="pi pi-money-bill text-lg text-gray-500"></i>
         <a href="mf.html" class="text-gray-500 font-medium text-sm" >MF</a>
       </div>
-     <div class="w-full h-14 flex justify-center items-center flex-col justify-center"  >
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center"  >
         <i class="pi pi-bars text-lg text-gray-500"></i>
         <a href="menu.html" class="text-gray-500 font-medium text-sm">Menu</a>
       </div>
     </footer>
-   
    <script>
-      const slider = document.getElementById('draggable');
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  slider.addEventListener('mousedown', (e) => {
-    isDown = true;
-    slider.classList.add('active');
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-
-  slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    slider.classList.remove('active');
-  });
-
-  slider.addEventListener('mouseup', () => {
-    isDown = false;
-    slider.classList.remove('active');
-  });
-
-  slider.addEventListener('mousemove', (e) => {
-    if(!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2; // Adjust multiplier for faster/slower scrolling
-    slider.scrollLeft = scrollLeft - walk;
-  });
-
-  // Touch events for mobile
-  slider.addEventListener('touchstart', (e) => {
-    isDown = true;
-    startX = e.touches[0].pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-
-  slider.addEventListener('touchend', () => {
-    isDown = false;
-  });
-
-  slider.addEventListener('touchmove', (e) => {
-    if(!isDown) return;
-    const x = e.touches[0].pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2;
-    slider.scrollLeft = scrollLeft - walk;
-  });
-  
+      
    const openBtn = document.getElementById('openDrawer');
   const drawer = document.getElementById('drawer');
   const drawerPanel = document.getElementById('drawerPanel');
