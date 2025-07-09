@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stockedge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
+    <style>
+        .carousel-wrapper {
+            overflow: hidden;
+            position: relative;
+            min-height: 200px;
+            /* Set a minimum height */
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding-bottom: 30px;
+            /* Space for dots */
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .carousel-card {
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="h-screen flex flex-col bg-gray-100">
+    <!-- Fixed Header -->
+    <header class="bg-gray-100 gap-2 flex justify-between text-black shadow-lg fixed top-0 w-full z-10">
+        <div class="w-12 h-14  menu">
+            <span id="openDrawer" class="text-xl text-gray mt-2 "><i class="pi pi-align-justify"></i></span>
+        </div>
+        <div class="w-12 h-14 p-1 rounded-full flex items-center ">
+            <img src="./css/images/slack.png" class="rounded-full" alt="">
+        </div>
+
+        <div class=" h-14 p-1 w-full flex justify-between gap-5 items-center">
+            <div class="flex gap-2 items-center">
+                <p class="font-bold text-black text-gray-800 text-xl">Mutual Funds</p>
+                <div class=" px-2  bg-white flex items-center rounded-lg border-2 serd">
+                    <i class="pi pi pi-search"></i>
+                    <input type="text" name="search" id="search"
+                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900  placeholder:text-gray-400 outline-none  sm:text-sm/6"
+                        placeholder="Search..." />
+                </div>
+            </div>
+            <div class="flex gap-5 items-center">
+                <span class="cursor-pointer mb-1 ser" onclick="searchfun('open')"><i
+                        class="pi pi-search text-2xl mt-1"></i></span>
+                <span class="cursor-pointer">
+                    <i class="pi pi-bell text-2xl p-1"></i>
+                </span>
+                <span id="notifyToggle" class="profile"><i class="pi pi-user text-xl cursor-pointer "></i></span>
+            </div>
+        </div>
+
+        <div id="searchcontainer" class="w-full absolute top-0 flex items-center gap-2 px-2 h-14 bg-white hidden">
+            <div class=" px-2 w-5/6 flex items-center rounded-lg border-2">
+                <i class="pi pi pi-search"></i>
+                <input type="text" name="search" id="search"
+                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900  placeholder:text-gray-400 outline-none  sm:text-sm/6"
+                    placeholder="Search..." />
+            </div>
+
+            <button onclick="searchfun('close')"
+                class="cursor-pointer  border-2 w-1/6 py-1 border-blue-800 bg-blue-100 text-blue-800 text-sm rounded-lg">Close</button>
+        </div>
+    </header>
+
+    <div id="notifycontainer" class=" px-2 py-2 absolute hidden  rounded-lg bg-white right-3 top-10 z-10 shadow-lg">
+        <div class="w-full p-1">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-gray-500 rounded-full"></div>
+                <p class="font-medium text-lg text-black" id="clientnumber"></p>
+            </div>
+            <hr class="mt-1">
+            <button type="button" onclick="logout()"
+                class="text-blue-500 mt-2 flex justify-center items-center gap-2 px-2 w-full py-2 rounded-lg">Log out <i
+                    class="pi pi-sign-out"></i></button>
+        </div>
+    </div>
+
+    <div id="drawer" class="fixed inset-0 z-50 hidden">
+        <!-- Overlay/Backdrop -->
+        <div class="absolute inset-0 bg-black bg-opacity-50" onclick="closeDrawer()"></div>
+
+        <!-- Drawer Panel (Left Slide-in) -->
+        <div id="drawerPanel"
+            class="absolute inset-y-0 flex flex-col justify-between left-0 w-80 bg-white shadow-xl transform -translate-x-full transition-transform duration-500 ease-in-out">
+            <div class="w-full">
+                <div class="flex justify-between items-center p-4 border-b">
+                    <div class="flex items-center gap-2">
+                        <div class="w-12 h-12 bg-gray-500 rounded-full"></div>
+                        <p class="font-medium text-lg text-blue-500" id="clientid"></p>
+                    </div>
+                    <button onclick="closeDrawer()" class="text-gray-500 hover:text-black">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="px-2">
+                    <div class="w-full h-16 bg-blue-100 flex items-center justify-between rounded-lg p-1">
+                        <span class="text-lg pl-2">Subscribe Now</span>
+                        <span
+                            class="text-blue-800 bg-blue-100 border-2 border-blue-800 rounded-lg  px-4 py-1">Subscribe</span>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <ul class="w-full">
+                        <li class=" flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi  pi-chart-bar  text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Market</div>
+                            <div><i class="pi  pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <li class=" flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi  pi-search mt-2 text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Analytics</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <li class=" flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi pi-objects-column mt-2 text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">My SE</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi  pi-money-bill mt-2 text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Mutual Funds</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <hr>
+                        <li class="mt-2 flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi  pi-file-check mt-2 text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">My Plane</div>
+                        </li>
+                        <li class=" flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi  pi-indian-rupee mt-2 text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Pricing</div>
+                        </li>
+                        <hr>
+                        <li class="mt-2 flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi  pi-sparkles mt-2 text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Whats's News</div>
+                        </li>
+                        <li class=" flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi  pi-thumbs-up-fill mt-2 text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Support</div>
+                        </li>
+                        <li class=" flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi  pi-cog mt-2 text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Settings</div>
+                        </li>
+                        <li class=" flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi  pi-lock mt-2 text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Policies</div>
+                        </li>
+                        <li class=" flex justify-between items-center gap-2">
+                            <div class="w-8"><i class="pi  pi-share-alt mt-2 text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Spread The Word</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="w-full p-1">
+                <button type="button" onclick="logout()"
+                    class="text-blue-500 flex w-full bg-gray-100 shadow-lg justify-center items-center gap-2 px-2  py-2 rounded-lg ">Log
+                    out <i class="pi pi-sign-out"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scrollable Main Content -->
+    <main class="flex-1 overflow-y-auto mt-16 mb-16"> <!-- mt-16 and mb-16 account for header/footer height -->
+        <section class="w-full p-1">
+            <div class="w-full flex gap-2 px-2">
+                <div
+                    class="w-14 h-14 p-1 flex justify-center items-center bg-orange-500 rounded-full text-white text-xl">
+                    G</div>
+                <div class=" p-1">
+                    <p class="text-gray-800 font-bold text-sm">Gowtham R</p>
+                    <p class="text-gray-500 text-sm">Gust User</p>
+
+
+                </div>
+            </div>
+
+            <div class="w-full  bg-blue-100 flex items-center justify-between rounded-lg py-2 px-2 mt-1">
+                <span class="text-sm pl-2">Subscribe Now</span>
+                <span
+                    class="text-blue-800 bg-blue-100 border-2 border-blue-800 rounded-lg text-sm  px-4 py-1">Subscribe</span>
+            </div>
+
+            <div class="w-full px-2 py-2" >
+                <p class="text-gray-800 font-bold text-lg">Recently Used</p>
+
+                <div class="w-full flex gap-3 flex-wrap">
+                    <!-- Card 1 -->
+                    <div class="w-24 h-28 flex flex-col items-center  p-2">
+                        <img class="h-10 w-10 rounded-full mb-2 mt-auto"
+                            src="https://cdn-icons-png.flaticon.com/128/5501/5501360.png" alt="">
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Policies
+                        </h3>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="w-24 h-28 flex flex-col items-center p-2">
+                        <img class="h-10 w-10 rounded-full mb-2 mt-auto"
+                            src="https://cdn-icons-png.flaticon.com/128/11083/11083341.png" alt="">
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Spread<br>The World
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+
+             <div class="w-full px-2 py-2" >
+                <p class="text-gray-800 font-bold text-lg">Market</p>
+
+                <div class="w-full flex gap-3 flex-wrap">
+                    <!-- Card 1 -->
+                    <div class="w-24 h-28 flex flex-col items-center  p-2">
+       <img src="https://cdn-icons-png.flaticon.com/128/13383/13383019.png" class="w-8 h-8" alt="">
+                           
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Market <br>Home
+                        </h3>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="w-24 h-28 flex flex-col items-center p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/2979/2979677.png" class="w-8 h-8" alt="">
+                        
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                           Indices
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+       <img src="https://cdn-icons-png.flaticon.com/128/11083/11083341.png"  class="w-8 h-8" alt="">
+                          
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Trending<br>Stocks
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+                                <img src="https://cdn-icons-png.flaticon.com/128/15913/15913792.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            News $ <br> Updates
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/8030/8030198.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Deals
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/72/72570.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            FLL/DLL <br>Activity
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+ <img src="https://cdn-icons-png.flaticon.com/128/2257/2257295.png" class="w-8 h-8" alt="">
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Sectors
+                        </h3>
+                    </div>
+
+                   
+                </div>
+            </div>
+
+
+
+                         <div class="w-full px-2 py-2" >
+                <p class="text-gray-800 font-bold text-lg">Analytics</p>
+
+                <div class="w-full flex gap-3 flex-wrap">
+                    <!-- Card 1 -->
+                    <div class="w-24 h-28 flex flex-col items-center  p-2">
+       <img src="https://cdn-icons-png.flaticon.com/128/13383/13383019.png" class="w-8 h-8" alt="">
+                           
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Analytics <br>Home
+                        </h3>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="w-24 h-28 flex flex-col items-center p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/2979/2979677.png" class="w-8 h-8" alt="">
+                        
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                           Scans
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+       <img src="https://cdn-icons-png.flaticon.com/128/11083/11083341.png"  class="w-8 h-8" alt="">
+                          
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Chart<br>Patterns
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+                                <img src="https://cdn-icons-png.flaticon.com/128/15913/15913792.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Trading <br> Strategies
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/8030/8030198.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Investment <br> Ideas
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/72/72570.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Edge <br>Reports
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+ <img src="https://cdn-icons-png.flaticon.com/128/2257/2257295.png" class="w-8 h-8" alt="">
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Sector <br>Rotation
+                        </h3>
+                    </div>
+
+                   
+                </div>
+            </div>
+
+                     <div class="w-full px-2 py-2" >
+                <p class="text-gray-800 font-bold text-lg">My SE</p>
+
+                <div class="w-full flex gap-3 flex-wrap">
+                    <!-- Card 1 -->
+                    <div class="w-24 h-28 flex flex-col items-center  p-2">
+       <img src="https://cdn-icons-png.flaticon.com/128/13383/13383019.png" class="w-8 h-8" alt="">
+                           
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            My <br> StockEdge <br>Home
+                        </h3>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="w-24 h-28 flex flex-col items-center p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/2979/2979677.png" class="w-8 h-8" alt="">
+                        
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                           My <br> Portfolios
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+       <img src="https://cdn-icons-png.flaticon.com/128/11083/11083341.png"  class="w-8 h-8" alt="">
+                          
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            My<br>Watchlist
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+                                <img src="https://cdn-icons-png.flaticon.com/128/15913/15913792.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            My <br> Combination <br> Scans
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/8030/8030198.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            My <br> Scans
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/72/72570.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            My <br> Company <br>Filings
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+ <img src="https://cdn-icons-png.flaticon.com/128/2257/2257295.png" class="w-8 h-8" alt="">
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            My <br>Targets
+                        </h3>
+                    </div>
+
+                   
+                </div>
+            </div>
+
+                     <div class="w-full px-2 py-2" >
+                <p class="text-gray-800 font-bold text-lg">Mutual Funds</p>
+
+                <div class="w-full flex gap-3 flex-wrap">
+                    <!-- Card 1 -->
+                    <div class="w-24 h-28 flex flex-col items-center  p-2">
+       <img src="https://cdn-icons-png.flaticon.com/128/13383/13383019.png" class="w-8 h-8" alt="">
+                           
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Mutual <br>Funds <br>Home
+                        </h3>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="w-24 h-28 flex flex-col items-center p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/2979/2979677.png" class="w-8 h-8" alt="">
+                        
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                           AMCs
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+       <img src="https://cdn-icons-png.flaticon.com/128/11083/11083341.png"  class="w-8 h-8" alt="">
+                          
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            MF<br>Classes
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+                                <img src="https://cdn-icons-png.flaticon.com/128/15913/15913792.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Funds <br> Managers
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/8030/8030198.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            MF <br> Investment <br> Themes
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/72/72570.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            AUM <br>Analysis
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+ <img src="https://cdn-icons-png.flaticon.com/128/2257/2257295.png" class="w-8 h-8" alt="">
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            NFOs 
+                        </h3>
+                    </div>
+
+                   
+                </div>
+            </div>
+
+
+                     <div class="w-full px-2 py-2" >
+                <p class="text-gray-800 font-bold text-lg">More</p>
+
+                <div class="w-full flex gap-3 flex-wrap">
+                    <!-- Card 1 -->
+                    <div class="w-24 h-28 flex flex-col items-center  p-2">
+       <img src="https://cdn-icons-png.flaticon.com/128/13383/13383019.png" class="w-8 h-8" alt="">
+                           
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Settings
+                        </h3>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="w-24 h-28 flex flex-col items-center p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/2979/2979677.png" class="w-8 h-8" alt="">
+                        
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                           My Plans
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+       <img  src="https://cdn-icons-png.flaticon.com/128/11083/11083341.png"  class="w-8 h-8" alt="">
+                          
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Pricing
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+                                <img src="https://cdn-icons-png.flaticon.com/128/15913/15913792.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Support
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/8030/8030198.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Policies
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+        <img src="https://cdn-icons-png.flaticon.com/128/72/72570.png" class="w-8 h-8" alt="">
+
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Spread <br> The <br>Word
+                        </h3>
+                    </div>
+
+                     <div class="w-24 h-28 flex flex-col items-center  p-2">
+ <img src="https://cdn-icons-png.flaticon.com/128/2257/2257295.png" class="w-8 h-8" alt="">
+                        <h3 class="text-sm font-medium text-gray-900 text-center leading-tight h-10">
+                            Sector <br>Rotation
+                        </h3>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Footer -->
+    <footer class="bg-white gap-2 flex justify-between text-black p-1 shadow-xl fixed bottom-0 w-full z-10">
+        <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+            <i class="pi pi-chart-bar text-lg text-gray-500"></i>
+            <a href="main.html" class="text-gray-500 font-medium text-sm ">Market</a>
+        </div>
+        <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+            <i class="pi pi-search text-lg text-gray-500"></i>
+            <span class="text-gray-500 font-medium text-sm">Analytics</span>
+        </div>
+        <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+            <i class="pi pi-objects-column text-lg text-gray-500"></i>
+            <a href="my.html" class="text-gray-500 font-medium text-sm">My SE</a>
+        </div>
+        <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+            <i class="pi pi-money-bill text-lg text-gray-500"></i>
+            <a href="mf.html" class="text-gray-500 font-medium text-sm">MF</a>
+        </div>
+        <div class="w-full h-14 flex justify-center items-center flex-col justify-center"
+            style="border-top: 3px solid blue;">
+            <i class="pi pi-bars text-lg text-gray-500"></i>
+            <a href="menu.html" class="text-gray-500 font-medium text-sm" style="color: blue;">Menu</a>
+        </div>
+    </footer>
+<script>
+    
+   const openBtn = document.getElementById('openDrawer');
+  const drawer = document.getElementById('drawer');
+  const drawerPanel = document.getElementById('drawerPanel');
+
+  openBtn.addEventListener('click', () => {
+    drawer.classList.remove('hidden');
+    setTimeout(() => {
+      drawerPanel.classList.remove('-translate-x-full');
+    }, 10); // short delay to trigger transition
+  });
+
+  function closeDrawer() {
+    drawerPanel.classList.add('-translate-x-full');
+    setTimeout(() => {
+      drawer.classList.add('hidden');
+    }, 500); // matches the transition duration
+  }
+
+  function searchfun(option){
+    if(option=='open'){
+          document.getElementById('searchcontainer').classList.remove('hidden')
+    }
+    else{
+                document.getElementById('searchcontainer').classList.add('hidden')
+
+    }
+
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('notifyToggle');
+    const notifyBox = document.getElementById('notifycontainer');
+
+    // Initially hidden is already set via class, no need to hide again here
+
+    toggleBtn.addEventListener('click', () => {
+      notifyBox.classList.toggle('hidden'); // Show/hide on click
+    });
+
+    // Optional: click outside to auto-hide
+    document.addEventListener('click', function (event) {
+      if (!notifyBox.contains(event.target) && !toggleBtn.contains(event.target)) {
+        notifyBox.classList.add('hidden');
+      }
+    });
+  });
+
+  document.getElementById('clientid').innerText=localStorage.getItem('mobile')
+  function logout(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('name')
+    localStorage.removeItem('mobile')
+    window.location.href='/'
+   }
+
+  document.getElementById('clientnumber').innerText=localStorage.getItem('mobile')
+</script>
+
+</body>
+
+</html>

@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const data = await response.json();
       if (data) {
-        document.getElementById('loading').classList.add('hidden');
+     
         document.getElementById('content').classList.remove('hidden');
         const order = ['Sell', 'Buy', 'Hold'];
         products = order.flatMap(status => data.filter(item => item.status === status).slice(0, 5));

@@ -7,6 +7,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
       <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
+      <style>
+  body, html, * {
+     overflow: hidden;
+     user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+}
+      </style>
     <script>
       
         (function() {
@@ -158,7 +167,7 @@
     <main class="flex-1 overflow-y-auto mt-16 mb-16"> <!-- mt-16 and mb-16 account for header/footer height -->
 
 
-<section id="mainsection1" >
+<section >
 
 
         <div id="content" class="container hidden mx-auto p-1">
@@ -247,35 +256,20 @@
       </div>
       <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
         <i class="pi pi-objects-column text-lg text-gray-500"></i>
-        <span class="text-gray-500 font-medium text-sm">My SE</span>
+        <a href="my.html" class="text-gray-500 font-medium text-sm">My SE</a>
       </div>
       <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
         <i class="pi pi-money-bill text-lg text-gray-500"></i>
         <a href="mf.html" class="text-gray-500 font-medium text-sm" >MF</a>
       </div>
-      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
+      <div class="w-full h-14 flex justify-center items-center flex-col justify-center"  >
         <i class="pi pi-bars text-lg text-gray-500"></i>
-        <span class="text-gray-500 font-medium text-sm">Menu</span>
+        <a href="menu.html" class="text-gray-500 font-medium text-sm">Menu</a>
       </div>
     </footer>
    <script src="script/tips.js"></script>
 
-   <script>
  
-     function sectiontab(sectionId) {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-      if (section.id === sectionId) {
-        section.classList.remove('hidden');
-        section.classList.add('block');
-      } else {
-        section.classList.remove('block');
-        section.classList.add('hidden');
-      }
-    });
-  }
-    
-   </script>
    
 </body>
 </html>
