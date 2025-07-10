@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
      <style>
+   
+
+  
         .carousel-wrapper {
             overflow: hidden;
             position: relative;
@@ -93,87 +96,87 @@
   <!-- Overlay/Backdrop -->
   <div class="absolute inset-0 bg-black bg-opacity-50" onclick="closeDrawer()"></div>
 
-  <!-- Drawer Panel (Left Slide-in) -->
-  <div id="drawerPanel"
-       class="absolute inset-y-0 flex flex-col justify-between left-0 w-80 bg-white shadow-xl transform -translate-x-full transition-transform duration-500 ease-in-out">
-   <div class="w-full">
-     <div class="flex justify-between items-center p-4 border-b">
-      <div class="flex items-center gap-2">
-        <div class="w-12 h-12 bg-gray-500 rounded-full"></div>
-        <p class="font-medium text-lg text-blue-500" id="clientid"></p>
-      </div>
-      <button onclick="closeDrawer()" class="text-gray-500 hover:text-black">
-        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-    </div>
-   <div class="px-2">
-     <div class="w-full h-16 bg-blue-100 flex items-center justify-between rounded-lg p-1" >
-      <span class="text-lg pl-2">Subscribe Now</span>
-      <span class="text-blue-800 bg-blue-100 border-2 border-blue-800 rounded-lg  px-4 py-1">Subscribe</span>
-    </div>
-   </div>
-    <div class="p-2">
-      <ul class="w-full">
-        <li class=" flex justify-between items-center gap-2">
-          <div class="w-8"><i class="pi  pi-chart-bar  text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Market</div>
-          <div><i class="pi  pi-angle-right text-gray-500"></i></div>
-        </li>
-         <li class=" flex justify-between items-center gap-2">
-          <div class="w-8"><i class="pi  pi-search mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Analytics</div>
-          <div><i class="pi pi-angle-right text-gray-500"></i></div>
-        </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi pi-objects-column mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">My SE</div>
-          <div><i class="pi pi-angle-right text-gray-500"></i></div>
-        </li>
-          <li class="flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-money-bill mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Mutual Funds</div>
-          <div><i class="pi pi-angle-right text-gray-500"></i></div>
-        </li>
-<hr>
-       <li class="mt-2 flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-file-check mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">My Plane</div>
-        </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-indian-rupee mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Pricing</div>
-        </li>
-        <hr>
-         <li class="mt-2 flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-sparkles mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Whats's News</div>
-        </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-thumbs-up-fill mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Support</div>
-        </li>
-        <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-cog mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Settings</div>
-        </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-lock mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Policies</div>
-        </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-share-alt mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Spread The Word</div>
-        </li>
-      </ul>
-    </div>
-   </div>
+<div id="drawerPanel" class="absolute inset-y-0 flex flex-col justify-between left-0 w-80 bg-white shadow-xl transform -translate-x-full transition-transform duration-500 ease-in-out">
+            <div class="w-full">
+                <div class="flex justify-between items-center p-4 border-b">
+                    <div class="flex items-center gap-2">
+                        <div class="w-12 h-12 bg-gray-500 rounded-full"></div>
+                        <p class="font-medium text-lg text-blue-500" id="clientid"></p>
+                    </div>
+                    <button onclick="closeDrawer()" class="text-gray-500 hover:text-black" aria-label="Close menu">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="px-2">
+                    <div class="w-full h-16 bg-blue-100 flex items-center justify-between rounded-lg p-1">
+                        <span class="text-lg pl-2">Subscribe Now</span>
+                        <span class="text-blue-800 bg-blue-100 border-2 border-blue-800 rounded-lg px-4 py-1">Subscribe</span>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <ul class="w-full">
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-chart-bar text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Market</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-search text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Analytics</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-objects-column text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">My SE</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-money-bill text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Mutual Funds</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <hr class="my-2">
+                        <li class="mt-2 flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-file-check text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">My Plan</div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-indian-rupee text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Pricing</div>
+                        </li>
+                        <hr class="my-2">
+                        <li class="mt-2 flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-sparkles text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">What's New</div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-thumbs-up-fill text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Support</div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-cog text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Settings</div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-lock text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Policies</div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-share-alt text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Spread The Word</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-    <div class="w-full p-1">
-        <button type="button" onclick="logout()" class="text-blue-500 flex w-full bg-gray-100 shadow-lg justify-center items-center gap-2 px-2  py-2 rounded-lg ">Log out <i class="pi pi-sign-out"></i></button>
-    </div>
-  </div>
+            <div class="w-full p-1">
+                <button type="button" onclick="logout()" class="text-blue-500 flex w-full bg-gray-100 shadow-lg justify-center items-center gap-2 px-2 py-2 rounded-lg">
+                    Log out <i class="pi pi-sign-out"></i>
+                </button>
+            </div>
+        </div>
 </div>
 
     <!-- Scrollable Main Content -->

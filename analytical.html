@@ -1,259 +1,564 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stockedge</title>
+    <title>StockEdge - Analytics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
-      <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
-      <style>
-  body, html, * {
-     overflow: hidden;
-     user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    -webkit-touch-callout: none;
-}
-      </style>
+    <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
+    <style>
+        .hide-scrollbar {
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE 10+ */
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        /* Improved drawer transition */
+        .drawer-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
     <script>
-      
-        (function() {
+        (function () {
             const token = localStorage.getItem('token');
             if (!token) {
-                
                 window.location.replace('index.html');
             }
         })();
-
-       
     </script>
 </head>
+
 <body class="h-screen flex flex-col bg-gray-100">
     <!-- Fixed Header -->
-    <header class="bg-gray-100 gap-2 flex justify-between text-black shadow-lg fixed top-0 w-full z-10">
-      <div class="w-12 h-14  menu" >
-         <span id="openDrawer" class="text-xl text-gray mt-2 "><i class="pi pi-align-justify"></i></span>
+    <header class="bg-gray-100 gap-2 flex justify-between items-center text-black shadow-lg fixed top-0 w-full z-10">
+        <div class="w-12 h-14 flex items-center justify-center">
+            <button id="openDrawer" aria-label="Open menu" class="text-xl text-gray">
+                <i class="pi pi-align-justify"></i>
+            </button>
         </div>
-        <div class="w-12 h-14 p-1 rounded-full flex items-center " >
-          <img src="./css/images/slack.png" class="rounded-full" alt="">
+        <div class="w-12 h-14 p-1 rounded-full flex items-center justify-center">
+            <img src="./css/images/slack.png" class="rounded-full w-10 h-10" alt="Profile">
         </div>
-     
-        <div class=" h-14 p-1 w-full flex justify-between gap-5 items-center"  >
-          <div class="flex gap-2 items-center">
-            <p class="font-bold text-black text-gray-800 text-xl">Analytics</p>
-           <div class=" px-2  bg-white flex items-center rounded-lg border-2 serd" >
-            <i class="pi pi pi-search"></i>
-              <input type="text" name="search" id="search" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900  placeholder:text-gray-400 outline-none  sm:text-sm/6" placeholder="Search..."  />
-          </div>
-          </div>
-         <div class="flex gap-5 items-center">
-           <span class="cursor-pointer mb-1 ser" onclick="searchfun('open')"><i class="pi pi-search text-2xl mt-1"></i></span>
-         <span class="cursor-pointer"  >
-           <i class="pi pi-bell text-2xl p-1"></i>
-         </span>
-         <span id="notifyToggle" class="profile"><i class="pi pi-user text-xl cursor-pointer "></i></span>
-         </div>
+
+        <div class="h-14 p-1 w-full flex justify-between gap-5 items-center">
+            <div class="flex gap-2 items-center">
+                <h1 class="font-bold text-black text-gray-800 text-xl">Analytics</h1>
+                <div class="px-2 bg-white flex items-center rounded-lg border-2 serd">
+                    <i class="pi pi-search"></i>
+                    <input type="text" name="search" id="search"
+                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 outline-none sm:text-sm/6"
+                        placeholder="Search...">
+                </div>
+            </div>
+            <div class="flex gap-5 items-center">
+                <button class="cursor-pointer mb-1 ser" onclick="searchfun('open')" aria-label="Search">
+                    <i class="pi pi-search text-2xl mt-1"></i>
+                </button>
+                <button class="cursor-pointer" aria-label="Notifications">
+                    <i class="pi pi-bell text-2xl p-1"></i>
+                </button>
+                <button id="notifyToggle" class="profile" aria-label="User profile">
+                    <i class="pi pi-user text-xl cursor-pointer"></i>
+                </button>
+            </div>
         </div>
 
         <div id="searchcontainer" class="w-full absolute top-0 flex items-center gap-2 px-2 h-14 bg-white hidden">
-          <div class=" px-2 w-5/6 flex items-center rounded-lg border-2" >
-            <i class="pi pi pi-search"></i>
-              <input type="text" name="search" id="search" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900  placeholder:text-gray-400 outline-none  sm:text-sm/6" placeholder="Search..."  />
-          </div>
-
-          <button onclick="searchfun('close')" class="cursor-pointer  border-2 w-1/6 py-1 border-blue-800 bg-blue-100 text-blue-800 text-sm rounded-lg">Close</button>
+            <div class="px-2 w-5/6 flex items-center rounded-lg border-2">
+                <i class="pi pi-search"></i>
+                <input type="text" name="search" id="mobileSearch"
+                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 outline-none sm:text-sm/6"
+                    placeholder="Search...">
+            </div>
+            <button onclick="searchfun('close')"
+                class="cursor-pointer border-2 w-1/6 py-1 border-blue-800 bg-blue-100 text-blue-800 text-sm rounded-lg">Close</button>
         </div>
-
-        
     </header>
-<div id="notifycontainer" class=" px-2 py-2 absolute hidden  rounded-lg bg-white right-3 top-10 z-10 shadow-lg">
-   <div class="w-full p-1">
-    <div class="flex items-center gap-2">
-        <div class="w-8 h-8 bg-gray-500 rounded-full"></div>
-        <p class="font-medium text-lg text-black" id="clientnumber"></p>
-      </div>
-      <hr class="mt-1">
-        <button type="button" onclick="logout()" class="text-blue-500 mt-2 flex justify-center items-center gap-2 px-2 w-full py-2 rounded-lg">Log out <i class="pi pi-sign-out"></i></button>
-    </div>
-</div>
-<div id="drawer" class="fixed inset-0 z-50 hidden">
-  <!-- Overlay/Backdrop -->
-  <div class="absolute inset-0 bg-black bg-opacity-50" onclick="closeDrawer()"></div>
 
-  <!-- Drawer Panel (Left Slide-in) -->
-  <div id="drawerPanel"
-       class="absolute inset-y-0 flex flex-col justify-between left-0 w-80 bg-white shadow-xl transform -translate-x-full transition-transform duration-500 ease-in-out">
-   <div class="w-full">
-     <div class="flex justify-between items-center p-4 border-b">
-      <div class="flex items-center gap-2">
-        <div class="w-12 h-12 bg-gray-500 rounded-full"></div>
-        <p class="font-medium text-lg text-blue-500" id="clientid"></p>
-      </div>
-      <button onclick="closeDrawer()" class="text-gray-500 hover:text-black">
-        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
+    <!-- Profile Dropdown -->
+    <div id="notifycontainer" class="px-2 py-2 absolute hidden rounded-lg bg-white right-3 top-16 z-10 shadow-lg">
+        <div class="w-full p-1">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-gray-500 rounded-full"></div>
+                <p class="font-medium text-lg text-black" id="clientnumber"></p>
+            </div>
+            <hr class="mt-1">
+            <button type="button" onclick="logout()"
+                class="text-blue-500 mt-2 flex justify-center items-center gap-2 px-2 w-full py-2 rounded-lg">
+                Log out <i class="pi pi-sign-out"></i>
+            </button>
+        </div>
     </div>
-   <div class="px-2">
-     <div class="w-full h-16 bg-blue-100 flex items-center justify-between rounded-lg p-1" >
-      <span class="text-lg pl-2">Subscribe Now</span>
-      <span class="text-blue-800 bg-blue-100 border-2 border-blue-800 rounded-lg  px-4 py-1">Subscribe</span>
-    </div>
-   </div>
-    <div class="p-2">
-      <ul class="w-full">
-        <li class=" flex justify-between items-center gap-2">
-          <div class="w-8"><i class="pi  pi-chart-bar  text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Market</div>
-          <div><i class="pi  pi-angle-right text-gray-500"></i></div>
-        </li>
-         <li class=" flex justify-between items-center gap-2">
-          <div class="w-8"><i class="pi  pi-search mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Analytics</div>
-          <div><i class="pi pi-angle-right text-gray-500"></i></div>
-        </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi pi-objects-column mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">My SE</div>
-          <div><i class="pi pi-angle-right text-gray-500"></i></div>
-        </li>
-          <li class="flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-money-bill mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Mutual Funds</div>
-          <div><i class="pi pi-angle-right text-gray-500"></i></div>
-        </li>
-<hr>
-       <li class="mt-2 flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-file-check mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">My Plane</div>
-        </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-indian-rupee mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Pricing</div>
-        </li>
-        <hr>
-         <li class="mt-2 flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-sparkles mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Whats's News</div>
-        </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-thumbs-up-fill mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Support</div>
-        </li>
-        <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-cog mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Settings</div>
-        </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-lock mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Policies</div>
-        </li>
-         <li class=" flex justify-between items-center gap-2" >
-          <div class="w-8"><i class="pi  pi-share-alt mt-2 text-md text-gray-500"></i></div>
-          <div class="w-full text-md text-gray-500">Spread The Word</div>
-        </li>
-      </ul>
-    </div>
-   </div>
 
-    <div class="w-full p-1">
-        <button type="button" onclick="logout()" class="text-blue-500 flex w-full bg-gray-100 shadow-lg justify-center items-center gap-2 px-2  py-2 rounded-lg ">Log out <i class="pi pi-sign-out"></i></button>
+    <!-- Drawer Navigation -->
+    <div id="drawer" class="fixed inset-0 z-50 hidden">
+        <!-- Overlay/Backdrop -->
+        <div class="absolute inset-0 bg-black bg-opacity-50" onclick="closeDrawer()"></div>
+
+        <!-- Drawer Panel (Left Slide-in) -->
+        <div id="drawerPanel"
+            class="absolute inset-y-0 flex flex-col justify-between left-0 w-80 bg-white shadow-xl transform -translate-x-full transition-transform duration-500 ease-in-out">
+            <div class="w-full">
+                <div class="flex justify-between items-center p-4 border-b">
+                    <div class="flex items-center gap-2">
+                        <div class="w-12 h-12 bg-gray-500 rounded-full"></div>
+                        <p class="font-medium text-lg text-blue-500" id="clientid"></p>
+                    </div>
+                    <button onclick="closeDrawer()" class="text-gray-500 hover:text-black" aria-label="Close menu">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="px-2">
+                    <div class="w-full h-16 bg-blue-100 flex items-center justify-between rounded-lg p-1">
+                        <span class="text-lg pl-2">Subscribe Now</span>
+                        <span
+                            class="text-blue-800 bg-blue-100 border-2 border-blue-800 rounded-lg px-4 py-1">Subscribe</span>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <ul class="w-full">
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-chart-bar text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Market</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-search text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Analytics</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-objects-column text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">My SE</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-money-bill text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Mutual Funds</div>
+                            <div><i class="pi pi-angle-right text-gray-500"></i></div>
+                        </li>
+                        <hr class="my-2">
+                        <li class="mt-2 flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-file-check text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">My Plan</div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-indian-rupee text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Pricing</div>
+                        </li>
+                        <hr class="my-2">
+                        <li class="mt-2 flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-sparkles text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">What's New</div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-thumbs-up-fill text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Support</div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-cog text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Settings</div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-lock text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Policies</div>
+                        </li>
+                        <li class="flex justify-between items-center gap-2 py-2 hover:bg-gray-100 rounded px-1">
+                            <div class="w-8"><i class="pi pi-share-alt text-md text-gray-500"></i></div>
+                            <div class="w-full text-md text-gray-500">Spread The Word</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="w-full p-1">
+                <button type="button" onclick="logout()"
+                    class="text-blue-500 flex w-full bg-gray-100 shadow-lg justify-center items-center gap-2 px-2 py-2 rounded-lg">
+                    Log out <i class="pi pi-sign-out"></i>
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-    <!-- Scrollable Main Content -->
-    <main class="flex-1 overflow-y-auto mt-16 mb-16"> <!-- mt-16 and mb-16 account for header/footer height -->
 
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto mt-16 mb-16">
+        <section class="w-full p-1">
+            <!-- Stocks Scan Section -->
+            <div class="w-full bg-white px-2 rounded-lg">
+                <h2 class="font-bold text-lg text-gray-800">Stocks Scan</h2>
+                <div id="draggableContainer" class="w-full flex p-1 gap-2 overflow-x-auto cursor-grab hide-scrollbar"
+                    style="scroll-behavior: smooth;">
+                    <div class="w-32 h-28 flex-shrink-0 bg-white border-2 px-2 py-2 rounded-lg border-gray-200">
+                        <div class="w-8 h-8 rounded-lg bg-gray-200"></div>
+                        <p class="text-sm text-gray-800 font-semibold mt-2">Higher Delivery</p>
+                        <p class="text-sm text-gray-800 font-semibold" style="margin-top: -3px;">Quantity</p>
+                        <span class="text-sm text-gray-600 mt-2">11 Stocks</span>
+                    </div>
+                    <div class="w-32 h-28 flex-shrink-0 bg-white border-2 px-2 py-2 rounded-lg border-gray-200">
+                        <div class="w-8 h-8 rounded-lg bg-green-200"></div>
+                        <p class="text-sm text-gray-800 font-semibold mt-2">Higher Delivery</p>
+                        <p class="text-sm text-gray-800 font-semibold" style="margin-top: -3px;">Percentage</p>
+                        <span class="text-sm text-gray-600 mt-2">12 Stocks</span>
+                    </div>
+                    <div class="w-32 h-28 flex-shrink-0 bg-white border-2 px-2 py-2 rounded-lg border-gray-200">
+                        <div class="w-8 h-8 rounded-lg bg-red-200"></div>
+                        <p class="text-sm text-gray-800 font-semibold mt-2">White Marubozu</p>
+                        <span class="text-sm text-gray-600 mt-2">3 Stocks</span>
+                    </div>
+                    <div class="w-32 h-28 flex-shrink-0 bg-white border-2 px-2 py-2 rounded-lg border-gray-200">
+                        <div class="w-8 h-8 rounded-lg bg-orange-200"></div>
+                        <p class="text-sm text-gray-800 font-semibold mt-2">High Return</p>
+                        <p class="text-sm text-gray-800 font-semibold" style="margin-top: -3px;">On Equity</p>
+                        <span class="text-sm text-gray-600 mt-2">112 Stocks</span>
+                    </div>
+                    <div class="w-32 h-28 flex-shrink-0 bg-white border-2 px-2 py-2 rounded-lg border-gray-200">
+                        <div class="w-8 h-8 rounded-lg bg-blue-200"></div>
+                        <p class="text-sm text-gray-800 font-semibold mt-2">Increase in Promoter</p>
+                        <span class="text-sm text-gray-600 mt-2">112 Stocks</span>
+                    </div>
+                    <div class="w-32 h-28 flex-shrink-0 bg-white border-2 px-2 py-2 rounded-lg border-gray-200">
+                        <div class="w-8 h-8 rounded-lg bg-yellow-200"></div>
+                        <p class="text-sm text-gray-800 font-semibold mt-2">Close Crossing</p>
+                        <p class="text-sm text-gray-800 font-semibold" style="margin-top: -3px;">On Equity</p>
+                        <span class="text-sm text-gray-600 mt-2">112 Stocks</span>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Quick Links Section -->
+            <div class="w-full bg-white p-1 flex gap-2 overflow-x-auto touch-pan-x select-none" id="draggable">
+                <div class="p-1 flex flex-shrink-0 justify-center flex-col gap-2 items-center">
+                    <div class="w-12 h-12 rounded-full bg-white shadow-lg flex justify-center items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3281/3281306.png" class="w-8 h-8"
+                            alt="My Scans">
+                    </div>
+                    <p class="text-center text-xs text-gray-500 form-normal">My Scans</p>
+                </div>
+                <div class="p-1 flex flex-shrink-0 justify-center flex-col gap-2 items-center">
+                    <div class="w-12 h-12 rounded-full bg-white shadow-lg flex justify-center items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/128/15913/15913792.png" class="w-8 h-8"
+                            alt="My Company">
+                    </div>
+                    <p class="text-center text-xs text-gray-500 form-normal">My Company</p>
+                </div>
+                <div class="p-1 flex flex-shrink-0 justify-center flex-col gap-2 items-center">
+                    <div class="w-12 h-12 rounded-full bg-white shadow-lg flex justify-center items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/128/13383/13383019.png" class="w-8 h-8"
+                            alt="My Target">
+                    </div>
+                    <p class="text-center text-xs text-gray-500 form-normal">My Target</p>
+                </div>
+                <div class="p-1 flex flex-shrink-0 justify-center flex-col gap-2 items-center">
+                    <div class="w-12 h-12 rounded-full bg-white shadow-lg flex justify-center items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/128/2979/2979677.png" class="w-8 h-8"
+                            alt="My Stock">
+                    </div>
+                    <p class="text-center text-xs text-gray-500 form-normal">My Stock</p>
+                </div>
+                <div class="p-1 flex flex-shrink-0 justify-center flex-col gap-2 items-center">
+                    <div class="w-12 h-12 rounded-full bg-white shadow-lg flex justify-center items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/128/512/512142.png" class="w-8 h-8" alt="More">
+                    </div>
+                    <p class="text-center text-xs text-gray-500 form-normal">More</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full p-1" >
+            <div class="w-full px-2 py-2 bg-white rounded-lg" >
+                <div class="w-full flex justify-between items-center">
+                    <p class="text-lg font-medium text-gray-800">Chart Patterns</p>
+                    <p class="text-blue-500 cursor-pointer text-sm  flex items-center" onclick="viewall()">
+                        View All <i class="pi pi-angle-right ml-1"></i>
+                    </p>
+                </div>
+                <div class="w-full flex justify-end">
+                    <span class="text-xs font-normal text-gray-500 bg-gray-100 rounded-lg px-2 py-1">179 Stocks in Recent</span>
+                </div>
+
+                <div class="w-full mt-2 ">
+                    <div class="w-full bg-blue-200 py-2 rounded-lg">
+                        <p class="text-center text-xs text-gray-800 font-normal">To View Recent Chart Patterns, <span class="text-blue-600">SUBSCRIBE</span> To Pro Plane</p>
+                    </div>
+                </div>
+
+                <div class="w-full mt-2 flex justify-end">
+                  <div class="flex gap-2 rounded-md bg-gray-100 p-1">
+                    <button id="recentbtn" type="button" class="bg-white px-1 py-1 rounded-lg" onclick="tab('recent')">Recent</button>
+                    <button id="pastbtn" type="button" class=" px-1 py-1 rounded-lg" onclick="tab('past')">Past</button>
+                  </div>
+                </div>
+
+                <div id="recent" class="w-full p-1 transition-transform duration-500 ease-in-out" >
+                    <div class="w-full flex justify-between">
+                        <p class="text-sm font-medium text-gray-800">Stock Name</p>
+                        <p class="text-sm font-medium text-gray-800">LTP</p>
+                    </div>
+                    <div class="w-full flex justify-between gap-1" >
+                        <div class="p-1 flex gap-2 " >
+                            <div class="w-6 h-6 rounded-full bg-gray-200">
+                                
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">Metropolis Healthcare Ltd.</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Bullish Flag</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Published On:07 Jul 2025</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Price Point:1,788.00</p>
+                            </div>
+                        </div>
+                        <div class=" p-1 flex flex-col justify-center items-center" >
+                            <p class="text-sm font-normal text-gray-500">1,788.00</p>
+                            <img src="https://cdn-icons-png.flaticon.com/128/3620/3620804.png" class="w-8 h-8" alt="">
+                        </div>
+                    </div>
+
+                       <div class="w-full flex justify-between gap-1" >
+                        <div class="p-1 flex gap-2 " >
+                            <div class="w-6 h-6 rounded-full bg-green-200">
+                                
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">Metro Brands Ltd.</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Symmetrical Triangle</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Published On:26 Jul 2025</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Price Point:1,788.00</p>
+                            </div>
+                        </div>
+                        <div class=" p-1 flex flex-col justify-center items-center" >
+                            <p class="text-sm font-normal text-gray-500">2,854.00</p>
+                            <img src="https://cdn-icons-png.flaticon.com/128/3620/3620804.png" class="w-8 h-8" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div id="past" class="w-full p-1 hidden transition-transform duration-500 ease-in-out" >
+
+                     <div class="w-full flex justify-between gap-1" >
+                        <div class="p-1 flex gap-2 " >
+                            <div class="w-6 h-6 rounded-full bg-green-200">
+                                
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">Garden Reach Shipbuilders & Engineers Ltd.</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Double Tap</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Published On:26 Jul 2025</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Price Point:1,788.00</p>
+                            </div>
+                        </div>
+                        <div class=" p-1 flex flex-col justify-center items-center" >
+                            <p class="text-sm font-normal text-gray-500">2,854.00</p>
+                            <img src="https://cdn-icons-png.flaticon.com/128/3620/3620804.png" class="w-8 h-8" alt="">
+                        </div>
+                    </div>
+
+                      <div class="w-full flex justify-between gap-1" >
+                        <div class="p-1 flex gap-2 " >
+                            <div class="w-6 h-6 rounded-full bg-red-200">
+                                
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">Home First Finance Company India Ltd.</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Bullish Flag</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Published On:26 Jul 2025</p>
+                                <p class="text-xs text-gray-500 font-normal" style="margin-top: -2px;">Price Point:1,788.00</p>
+                            </div>
+                        </div>
+                        <div class=" p-1 flex flex-col justify-center items-center" >
+                            <p class="text-sm font-normal text-gray-500">5,258.00</p>
+                            <img src="https://cdn-icons-png.flaticon.com/128/3620/3620804.png" class="w-8 h-8" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </main>
 
     <!-- Fixed Footer -->
     <footer class="bg-white gap-2 flex justify-between text-black p-1 shadow-xl fixed bottom-0 w-full z-10">
-      
-      <div class="w-full h-14 flex justify-center items-center flex-col justify-center" >
-        <i class="pi pi-chart-bar text-lg text-gray-500"></i>
-        <a href="main.html" class="text-gray-500 font-medium text-sm " >Market</a>
-      </div>
-      <div class="w-full h-14 flex justify-center items-center flex-col justify-center"style="border-top: 3px solid blue;" >
-        <i class="pi pi-search text-lg text-gray-500"  style="color: blue;"></i>
-        <a href="analytical.html" class="text-gray-500 font-medium text-sm"style="color: blue;" >Analytics</a>
-      </div>
-      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
-        <i class="pi pi-objects-column text-lg text-gray-500"></i>
-        <a href="my.html" class="text-gray-500 font-medium text-sm">My SE</a>
-      </div>
-      <div class="w-full h-14 flex justify-center items-center flex-col justify-center">
-        <i class="pi pi-money-bill text-lg text-gray-500"></i>
-        <a href="mf.html" class="text-gray-500 font-medium text-sm" >MF</a>
-      </div>
-      <div class="w-full h-14 flex justify-center items-center flex-col justify-center"  >
-        <i class="pi pi-bars text-lg text-gray-500"></i>
-        <a href="menu.html" class="text-gray-500 font-medium text-sm">Menu</a>
-      </div>
+        <a href="main.html" class="w-full h-14 flex justify-center items-center flex-col">
+            <i class="pi pi-chart-bar text-lg text-gray-500"></i>
+            <span class="text-gray-500 font-medium text-sm">Market</span>
+        </a>
+        <a href="analytical.html" class="w-full h-14 flex justify-center items-center flex-col"
+            style="border-top: 3px solid blue;">
+            <i class="pi pi-search text-lg " style="color: blue;"></i>
+            <span class="font-medium text-sm" style="color: blue;">Analytics</span>
+        </a>
+        <a href="my.html" class="w-full h-14 flex justify-center items-center flex-col">
+            <i class="pi pi-objects-column text-lg text-gray-500"></i>
+            <span class="text-gray-500 font-medium text-sm">My SE</span>
+        </a>
+        <a href="mf.html" class="w-full h-14 flex justify-center items-center flex-col">
+            <i class="pi pi-money-bill text-lg text-gray-500"></i>
+            <span class="text-gray-500 font-medium text-sm">MF</span>
+        </a>
+        <a href="menu.html" class="w-full h-14 flex justify-center items-center flex-col">
+            <i class="pi pi-bars text-lg text-gray-500"></i>
+            <span class="text-gray-500 font-medium text-sm">Menu</span>
+        </a>
     </footer>
-   <script>
-      
-   const openBtn = document.getElementById('openDrawer');
-  const drawer = document.getElementById('drawer');
-  const drawerPanel = document.getElementById('drawerPanel');
 
-  openBtn.addEventListener('click', () => {
-    drawer.classList.remove('hidden');
-    setTimeout(() => {
-      drawerPanel.classList.remove('-translate-x-full');
-    }, 10); // short delay to trigger transition
-  });
+    <script>
+        // Draggable horizontal scroll for quick links
+        const slider = document.getElementById('draggable');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-  function closeDrawer() {
-    drawerPanel.classList.add('-translate-x-full');
-    setTimeout(() => {
-      drawer.classList.add('hidden');
-    }, 500); // matches the transition duration
-  }
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
 
-  function searchfun(option){
-    if(option=='open'){
-          document.getElementById('searchcontainer').classList.remove('hidden')
-    }
-    else{
-                document.getElementById('searchcontainer').classList.add('hidden')
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
 
-    }
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
 
-  }
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const toggleBtn = document.getElementById('notifyToggle');
-    const notifyBox = document.getElementById('notifycontainer');
+        // Touch events for mobile
+        slider.addEventListener('touchstart', (e) => {
+            isDown = true;
+            startX = e.touches[0].pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
 
-    // Initially hidden is already set via class, no need to hide again here
+        slider.addEventListener('touchend', () => {
+            isDown = false;
+        });
 
-    toggleBtn.addEventListener('click', () => {
-      notifyBox.classList.toggle('hidden'); // Show/hide on click
-    });
+        slider.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            const x = e.touches[0].pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
 
-    // Optional: click outside to auto-hide
-    document.addEventListener('click', function (event) {
-      if (!notifyBox.contains(event.target) && !toggleBtn.contains(event.target)) {
-        notifyBox.classList.add('hidden');
-      }
-    });
-  });
+        // Draggable horizontal scroll for stocks scan
+        const container = document.getElementById("draggableContainer");
+        container.addEventListener("mousedown", (e) => {
+            isDown = true;
+            container.classList.add("cursor-grabbing");
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+        });
 
-  document.getElementById('clientid').innerText=localStorage.getItem('mobile')
-  function logout(){
-    localStorage.removeItem('token')
-    localStorage.removeItem('name')
-    localStorage.removeItem('mobile')
-    window.location.href='/'
-   }
+        container.addEventListener("mouseleave", () => {
+            isDown = false;
+            container.classList.remove("cursor-grabbing");
+        });
 
-  document.getElementById('clientnumber').innerText=localStorage.getItem('mobile')
-   </script>
+        container.addEventListener("mouseup", () => {
+            isDown = false;
+            container.classList.remove("cursor-grabbing");
+        });
 
- 
-   
+        container.addEventListener("mousemove", (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            container.scrollLeft = scrollLeft - walk;
+        });
+
+        // Drawer functionality
+        const openBtn = document.getElementById('openDrawer');
+        const drawer = document.getElementById('drawer');
+        const drawerPanel = document.getElementById('drawerPanel');
+
+        openBtn.addEventListener('click', () => {
+            drawer.classList.remove('hidden');
+            setTimeout(() => {
+                drawerPanel.classList.remove('-translate-x-full');
+            }, 10);
+        });
+
+        function closeDrawer() {
+            drawerPanel.classList.add('-translate-x-full');
+            setTimeout(() => {
+                drawer.classList.add('hidden');
+            }, 300);
+        }
+
+        // Search functionality
+        function searchfun(option) {
+            const searchContainer = document.getElementById('searchcontainer');
+            if (option === 'open') {
+                searchContainer.classList.remove('hidden');
+            } else {
+                searchContainer.classList.add('hidden');
+            }
+        }
+
+        // Profile dropdown
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleBtn = document.getElementById('notifyToggle');
+            const notifyBox = document.getElementById('notifycontainer');
+
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notifyBox.classList.toggle('hidden');
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', function (event) {
+                if (!notifyBox.contains(event.target) && !toggleBtn.contains(event.target)) {
+                    notifyBox.classList.add('hidden');
+                }
+            });
+        });
+
+        // Set user info
+        document.getElementById('clientid').textContent = localStorage.getItem('mobile') || 'User';
+        document.getElementById('clientnumber').textContent = localStorage.getItem('mobile') || 'User';
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('name');
+            localStorage.removeItem('mobile');
+            window.location.href = 'index.html';
+        }
+
+
+        function tab(tabname){
+            if(tabname === 'recent') {
+                document.getElementById('recentbtn').classList.add('bg-white');
+                document.getElementById('pastbtn').classList.remove('bg-white');
+                document.getElementById('recent').classList.remove('hidden');
+                document.getElementById('past').classList.add('hidden');
+            } else if (tabname === 'past') {
+                document.getElementById('pastbtn').classList.add('bg-white');
+                document.getElementById('recentbtn').classList.remove('bg-white');
+                document.getElementById('recent').classList.add('hidden');
+                document.getElementById('past').classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
+
 </html>
